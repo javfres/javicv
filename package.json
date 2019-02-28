@@ -1,0 +1,22 @@
+{
+  "name": "javicv",
+  "version": "1.0.0",
+  "description": "My CV",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "CV",
+    "Resume"
+  ],
+  "author": "javfres",
+  "license": "ISC",
+  "dependencies": {
+    "dist-exiftool": "^10.53.0",
+    "node-exiftool": "^2.3.0",
+    "npm-watch": "^0.6.0",
+    "nunjucks": "^3.1.7",
+    "pdf-puppeteer": "^1.1.5"
+  }
+}
