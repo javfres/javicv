@@ -1,6 +1,8 @@
 
 const nunjucks = require('nunjucks');
 const fs = require('fs');
+const pdfpuppeteer = require("pdf-puppeteer");
+
 
 class JaviCV {
 
@@ -23,6 +25,18 @@ class JaviCV {
 
         fs.writeFileSync(this.html_out, this.html);
 
+
+    }
+
+    build_pdf(){
+
+        const pdfoptions = {
+            printBackground: true,
+            preferCSSPageSize: true,
+        }
+        const callback = pdf => fs.writeFileSync(this.pdf_out, pdf);
+    
+        pdfpuppeteer(this.html, callback, pdfoptions);
 
     }
 
