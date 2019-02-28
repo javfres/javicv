@@ -3,7 +3,11 @@ const nunjucks = require('nunjucks');
 const fs = require('fs');
 const pdfpuppeteer = require("pdf-puppeteer");
 const setmetadata = require("./metadata");
-
+const {
+    remove_spaces,
+    img_to_base64,
+    inline_svg,
+} = require('./htmlutils');
 
 class JaviCV {
 
@@ -23,6 +27,14 @@ class JaviCV {
         const data = {};
 
         this.html = nunjucks.render('index.html', {...data, debug:this.debug});
+
+        // Remove spaces between tags
+        this.html = remove_spaces(this.html);
+
+        // Imgs
+        this.html = img_to_base64(this.html);
+        this.html = inline_svg(this.html);
+
 
         fs.writeFileSync(this.html_out, this.html);
 
