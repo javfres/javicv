@@ -25,7 +25,7 @@
       "patterns": [
         "src"
       ],
-      "extensions": "html,css,svg"
+      "extensions": "html,css,svg,js"
     }
   }
 }

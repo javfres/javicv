@@ -143,8 +143,40 @@ function path_to_type(path){
 }
 
 
+
+
+/*
+ * Inline the css into the html
+ */
+function inline_css(html){
+
+    const re = /\<link([\w\W]+?)\>/g;
+    const re2 = /(\<link\s[^>]*?)href\s*=\s*['\"]([^'\"]*?)['\"]([^>]*?\>)/;
+
+    // Replace the images found
+    return html.replace(re, function(str){
+
+        const res = re2.exec(str);
+        if(!res) return "<!-- Error CSS -->";
+
+        const path = res[2];
+
+        if (!fs.existsSync(path)) {
+            return str + " <!-- Not inlined -->";
+        }
+        
+        const contents = fs.readFileSync(path, "utf8");
+        return '<style>\n' + contents + '\n</style>';
+
+    });
+
+}
+
+
+
 module.exports = {
     remove_spaces,
     img_to_base64,
     inline_svg,
+    inline_css,
 };

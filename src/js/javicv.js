@@ -7,6 +7,7 @@ const {
     remove_spaces,
     img_to_base64,
     inline_svg,
+    inline_css,
 } = require('./htmlutils');
 
 class JaviCV {
@@ -34,6 +35,9 @@ class JaviCV {
         // Imgs
         this.html = img_to_base64(this.html);
         this.html = inline_svg(this.html);
+
+        // CSS
+        this.html = inline_css(this.html);
 
 
         fs.writeFileSync(this.html_out, this.html);
