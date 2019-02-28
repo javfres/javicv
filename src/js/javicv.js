@@ -12,7 +12,7 @@ const {
 
 class JaviCV {
 
-    constructor(debug = false){
+    constructor(debug = true){
         this.html = null;
         this.debug = debug;
 
@@ -25,7 +25,22 @@ class JaviCV {
 
     build_html(){
 
-        const data = {};
+        let data = {
+            // 96 pdi
+            WIDTH: 794,
+            HEIGHT: 1123,
+
+            primary_color: 'rgb(72,72,72)',
+            grey_color: 'rgb(115,115,115)',
+
+            page_margins: 40,
+            column_sep: 30,
+        };
+
+        data.INNER_WIDTH = data.WIDTH - data.page_margins*2;
+        data.INNER_HEIGHT = data.HEIGHT - data.page_margins*2;
+        data.column_width =  Math.floor(( data.INNER_WIDTH - data.column_sep*2 ) / 3);
+
 
         this.html = nunjucks.render('index.html', {...data, debug:this.debug});
 

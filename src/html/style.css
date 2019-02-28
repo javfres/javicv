@@ -1,5 +1,157 @@
 
 
+@page {
+    size: A4 portrait;
+    margin: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
 .page {
-    color: pink;
+    page-break-after: always;
+    width: {{ WIDTH }}px;
+    height: {{ HEIGHT }}px;
+    position: relative;
+}
+
+.page > .inner {
+
+    position: absolute;
+
+    top: {{ page_margins }}px;
+    left: {{ page_margins }}px;
+
+    width: {{ WIDTH - page_margins*2 }}px;
+    height: {{ HEIGHT - page_margins*2 }}px;
+}
+
+
+{% if debug %}
+
+    .page {
+        border: dotted 0.5px rgb(192, 224, 118);
+    }
+
+    .page > .inner {
+        border: dotted 0.5px rgb(214, 132, 132);
+    }
+
+{% endif %}
+    
+
+/*
+ * Fonts
+ */
+body {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 9pt;
+    color:rgb(50, 50, 50);
+}
+
+
+
+
+
+.header {
+    position: relative;
+    width: 100%;
+    height: 160px;
+}
+
+
+.header > img.me {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 160px;
+    height: 160px;
+
+    /*border-radius: 5%;*/
+    filter: grayscale(70%); 
+}
+
+.header > .text {
+
+    position: absolute;
+    top: 0;
+    left: 170px;
+
+    width: 200px;
+    height: 160px;
+}
+
+.header > .text > h1 {
+    margin-top: 0;
+    color: {{primary_color}};
+    text-transform: uppercase;
+    font-size: 28pt;
+    font-weight: bold;
+}
+
+.header > .text > h2 {
+    margin-top: 0;
+    color: {{grey_color}};
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+
+hr {
+
+    border: 2px dotted {{grey_color}};
+    border-style: none none dotted; 
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+
+
+
+.row > .column {
+
+    width: {{ column_width }}px;
+    margin-left: {{ column_sep }}px;
+    display: inline-block;
+    vertical-align:top;
+    position: relative;
+}
+
+ .row > .column.x2 {
+    width: {{ column_width*2+column_sep }}px;
+}
+
+ .row > .column.x3 {
+    width: {{ column_width*3+column_sep*2 }}px;
+}
+
+.row > .column:first-child {
+    margin-left: 0;
+}
+
+
+.row > .divisor {
+    display: inline-block;
+    vertical-align:top;
+    position: relative;
+
+    /*width: {{ column_sep }}px;*/
+
+    margin-left:  {{ column_sep/2-1 }}px;
+    margin-right:  {{ column_sep/2-1 }}px;
+
+    min-height: 10px;
+
+    border-left: 2px dotted {{grey_color}};
+}
+
+
+.divisor + .column {
+    margin-left: 0;
 }
