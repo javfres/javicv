@@ -2,6 +2,7 @@
 const nunjucks = require('nunjucks');
 const fs = require('fs');
 const pdfpuppeteer = require("pdf-puppeteer");
+const setmetadata = require("./metadata");
 
 
 class JaviCV {
@@ -34,10 +35,24 @@ class JaviCV {
             printBackground: true,
             preferCSSPageSize: true,
         }
-        const callback = pdf => fs.writeFileSync(this.pdf_out, pdf);
+        const callback = pdf => {
+            fs.writeFileSync(this.pdf_out, pdf);
+            this.set_metadata();
+        }
     
         pdfpuppeteer(this.html, callback, pdfoptions);
 
+    }
+
+
+    set_metadata(){
+
+        setmetadata(this.pdf_out, {
+            'Subject': 'Resume',
+            'Title': 'CV Javier Fresno',
+            Author: 'Javier Fresno',
+            'Keywords+': [ 'Software engineer', 'PhD Computer Science', 'Full stack' ],
+        });
     }
 
 
