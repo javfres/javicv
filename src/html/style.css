@@ -73,6 +73,8 @@ body {
 
     /*border-radius: 5%;*/
     filter: grayscale(70%); 
+    /*transform: scaleX(-1);*/
+
 }
 
 .header > .text {
@@ -85,21 +87,55 @@ body {
     height: 160px;
 }
 
+
 .header > .text > h1 {
-    margin-top: 0;
+    margin: 0;
     color: {{primary_color}};
-    text-transform: uppercase;
-    font-size: 28pt;
-    font-weight: bold;
+    font-size: 30pt;
+    font-family: 'Share Tech Mono', monospace;
 }
 
-.header > .text > h2 {
+.header > .text  {
+    position: relative;
+    height: 100%;
+}
+
+.header > .text > .titles  {
+    position: absolute;
+    bottom: 0;
+}
+
+.header > .text > .titles > p {
     margin-top: 0;
     color: {{grey_color}};
     text-transform: uppercase;
     font-weight: bold;
     font-size: 11pt;
+    margin-bottom: 0;
+    margin-top: 8px;
 }
+
+.header > .links  {
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+.header > .links > .link  {
+    margin-bottom: 10px;
+}
+
+.header > .links > .link  {
+    margin-bottom: 10px;
+}
+
+.header > .links > .link svg  {
+    margin-left: 20px;
+    margin-right: 10px;
+    vertical-align: -5px;
+}
+
+
 
 
 hr {
@@ -111,6 +147,29 @@ hr {
     margin-bottom: 15px;
 
 }
+
+
+.svg-primary svg path   {
+    fill: {{primary_color}} !important;
+}
+
+
+
+a {
+    text-decoration: none;
+    color: {{primary_color}};
+    font-family: 'Share Tech Mono', monospace;
+}
+
+
+
+h2 {
+    font-size: 14pt;
+    font-family: 'Share Tech Mono', monospace;
+    color: {{primary_color}};
+    margin-top: 0;
+}
+
 
 
 

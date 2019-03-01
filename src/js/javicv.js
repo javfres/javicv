@@ -6,15 +6,14 @@ const setmetadata = require("./metadata");
 const {
     remove_spaces,
     img_to_base64,
-    inline_svg,
     inline_css,
+    inline_svg,
 } = require('./htmlutils');
 
 class JaviCV {
 
-    constructor(debug = true){
+    constructor(){
         this.html = null;
-        this.debug = debug;
 
         this.html_out = "dist/cv.html";
         this.pdf_out = "dist/cv.pdf";
@@ -23,14 +22,17 @@ class JaviCV {
 
     }
 
-    build_html(){
+    build_html(tofile = true){
 
         let data = {
             // 96 pdi
             WIDTH: 794,
             HEIGHT: 1123,
 
-            primary_color: 'rgb(72,72,72)',
+            primary_color: 'rgb(65,65,65)',
+
+            //primary_color: 'rgb(165,65,65)',
+
             grey_color: 'rgb(115,115,115)',
 
             page_margins: 40,
@@ -41,26 +43,30 @@ class JaviCV {
         data.INNER_HEIGHT = data.HEIGHT - data.page_margins*2;
         data.column_width =  Math.floor(( data.INNER_WIDTH - data.column_sep*2 ) / 3);
 
-
-        this.html = nunjucks.render('index.html', {...data, debug:this.debug});
+        
+        this.html = nunjucks.render('index.html', {...data, debug:tofile});
 
         // Remove spaces between tags
         this.html = remove_spaces(this.html);
 
         // Imgs
-        this.html = img_to_base64(this.html);
+        this.html = img_to_base64(this.html, false);
         this.html = inline_svg(this.html);
 
         // CSS
         this.html = inline_css(this.html);
 
-
-        fs.writeFileSync(this.html_out, this.html);
-
+        if(tofile){
+            fs.writeFileSync(this.html_out, this.html);
+        }
 
     }
 
+
+
     build_pdf(){
+
+        this.build_html(false);
 
         const pdfoptions = {
             printBackground: true,

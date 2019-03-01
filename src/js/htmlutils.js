@@ -10,7 +10,7 @@ function remove_spaces(html){
 /**
  * Replace the images to base64 images
  */
-function img_to_base64(html){
+function img_to_base64(html, alsosvg = true){
 
     const re = /\<img([\w\W]+?)\>/g;
     const re2 = /(\<img\s[^>]*?)src\s*=\s*['\"]([^'\"]*?)['\"]([^>]*?\>)/;
@@ -24,9 +24,10 @@ function img_to_base64(html){
         const path = res[2];
         const end = res[3];
         const type = path_to_type(path);
-        if(type === 'image/svg+xml') return str;
+        if(type === 'data') return str;
+        if(!alsosvg  && type === 'image/svg+xml') return str;
 
-        let src = 'data:' + type + ';base64, ';
+        let src = 'data:' + type + ';base64,';
         src+=base64_encode(path);
         src='src="' + src + '"';
 
@@ -113,6 +114,7 @@ function inline_svg(html){
  * Encode a file in base64 format
  */
 function base64_encode(file) {
+
     // read binary data
     var bitmap = fs.readFileSync(file);
     // convert binary data to base64 encoded string
@@ -126,6 +128,8 @@ function base64_encode(file) {
  * Obtain the mime type from the extension of the file
  */
 function path_to_type(path){
+
+    if(path.startsWith('data:')) return 'data';
 
     const extension = path.split('.').pop().toLowerCase();
 

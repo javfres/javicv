@@ -1,0 +1,406 @@
+
+<style>
+
+/*
+ * Page, body and columns
+ */
+
+
+@page {
+    size: A4 portrait;
+    margin: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.page {
+    page-break-after: always;
+    width: {{ WIDTH }}px;
+    height: {{ HEIGHT }}px;
+    position: relative;
+}
+
+.page > .inner {
+
+    position: absolute;
+
+    top: {{ page_margins }}px;
+    left: {{ page_margins }}px;
+
+    width: {{ WIDTH - page_margins*2 }}px;
+    height: {{ HEIGHT - page_margins*2 }}px;
+}
+
+
+.row > .column {
+
+    width: {{ column_width }}px;
+    margin-left: {{ column_sep }}px;
+    display: inline-block;
+    vertical-align:top;
+    position: relative;
+}
+
+ .row > .column.x2 {
+    width: {{ column_width*2+column_sep }}px;
+}
+
+ .row > .column.x3 {
+    width: {{ column_width*3+column_sep*2 }}px;
+}
+
+.row > .column:first-child {
+    margin-left: 0;
+}
+
+
+
+
+{% if debug %}
+
+    .page {
+        border: dotted 0.5px rgb(192, 224, 118);
+    }
+
+    .page > .inner {
+        border: dotted 0.5px rgb(214, 132, 132);
+    }
+
+{% endif %}
+    
+
+
+
+/*
+ * Fonts
+ */
+body {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 9pt;
+    color:rgb(50, 50, 50);
+}
+
+
+/*
+ * Myself
+ */
+.myself {
+
+}
+
+.myself h1 {
+    color: {{primary_color}};
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 26pt;
+    letter-spacing: 1px;
+}
+
+.myself h2 {
+    color: {{grey_color}};
+    text-align: center;
+    font-size: 10pt;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.myself > img {
+    margin-top: 12px;
+    margin-bottom: 12px;
+
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+
+    border-radius: 50%;
+
+    filter: grayscale(70%); 
+}
+
+.myself .description {
+    background-color:rgb(245, 245, 245);
+    padding: 10px;
+}
+
+.myself .description h3 {
+    margin: 3px;
+    text-transform: uppercase;
+}
+
+
+.myself .description p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+
+/*
+ * Titlebox
+ */
+
+.titlebox {
+    color: white;
+    background-color: {{primary_color}};
+    padding-left: 10px;
+    margin-top: 30px;
+
+
+    /*border-radius: 7px 3px 3px;*/
+
+}
+
+.titlebox:first-child {
+    margin-top: 0;
+}
+
+
+.titlebox h2 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12pt;
+
+    margin: 3px;
+}
+
+/*
+ * Job
+ */
+ .job {
+    margin-top: 20px;
+    position: relative;
+ }
+
+ .job img {
+    position: absolute;
+    top: 38px;
+    top: 0;
+    width: 80px;
+    height: 80px;
+    border: solid 1px {{primary_color}};
+    filter: grayscale(40%); 
+    /*border-radius: 5%;*/
+ }
+
+ .job .content {
+    margin-left: 100px;
+ }
+
+ .job .content .years {
+    font-size: 9pt;
+    color: {{grey_color}};
+    margin-top: 1px;
+    margin-bottom: 1px;
+ }
+
+ .job .content .title {
+    color: {{primary_color}};
+    border-bottom: 1px solid {{primary_color}};
+    margin-top: 1px;
+    margin-bottom: 10px;
+    font-weight: bold;
+ }
+ 
+ .job .content .text {
+    margin-top: 3px;
+    text-align: justify;
+ }
+
+
+
+/*
+ * Formation
+ */
+
+ .formation {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+ }
+
+ .formation .year {
+    font-size: 9pt;
+    color: {{grey_color}};
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.formation .uni {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    text-transform: uppercase;
+    font-size: 8pt;
+}
+
+.formation .title {
+    color: {{primary_color}};
+    margin-top: 1px;
+    margin-bottom: 1px;
+    font-weight: bold;
+}
+
+.formation .extra {
+    color: {{grey_color}};
+    margin-bottom: 1px;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/*
+ * Skills
+ */
+
+ .skill  {
+     margin-left: 180px;
+     position: relative;
+ }
+
+
+ .skill .title {
+     width: 180px;
+     text-align: right;
+     color: {{primary_color}};
+     position: absolute;
+     left: -190px;
+ }
+
+
+
+
+
+.svg-primary svg path {
+    fill: {{primary_color}} !important;
+}
+
+
+
+.contact {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+.contact svg {
+    margin-left: 20px;
+    margin-right: 10px;
+    vertical-align: -1px;
+}
+
+
+
+.paper {
+    margin-top: 5px;
+}
+
+.paper .title {
+    display: block;
+    font-size: 90%;
+    margin-left: 10px;
+    letter-spacing: -0.5px;
+}
+
+.paper .authors {
+    color: {{grey_color}};
+    display: block;
+    font-size: 80%;
+    margin-left: 10px;
+}
+
+.paper .info {
+    color: {{grey_color}};
+    font-style: italic;
+    display: block;
+    font-size: 80%;
+    margin-left: 10px;
+}
+
+
+
+
+.other {
+    margin-top: 5px;
+    position: relative;
+}
+
+.other .year {
+    position: absolute;
+    color: {{grey_color}};
+    font-size: 90%;
+}
+
+
+.other .title {
+    margin-left: 60px;
+}
+
+.other .info {
+    margin-left: 60px;
+    color: {{grey_color}};
+    font-size: 90%;
+}
+
+.other .info ul {
+    margin-left: 3px;
+    margin-top: 2px;
+    padding-inline-start: 13px;
+}
+
+
+
+.justify {
+    text-align: justify;
+}
+
+
+/*
+ * Links
+ */
+ a {
+    text-decoration: none;
+    color: {{primary_color}};
+}
+
+
+
+
+.container {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.container h3 {
+    color: {{primary_color}};
+    margin-top: 12px;
+    margin-bottom: 3px;
+    font-size: 12px;
+}
+
+
+
+.thiscv {
+    background-color:rgb(245, 245, 245);
+    padding: 10px;
+    margin-bottom:20px;
+}
+
+.thiscv h3 {
+    margin: 3px;
+    text-transform: uppercase;
+}
+
+.thiscv p {
+    font-size: 90%;
+}
+
+.thiscv .item {
+    color: {{primary_color}};
+}
+
+
+
+
+</style>
