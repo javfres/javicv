@@ -10,6 +10,8 @@ const {
     inline_svg,
 } = require('./htmlutils');
 
+const gradient = require('gradient-color').default;
+
 class JaviCV {
 
     constructor(){
@@ -37,13 +39,48 @@ class JaviCV {
 
             page_margins: 40,
             column_sep: 30,
+
+            timeline: [
+                {
+                    title: "Computer Science",
+                    desc: "BSc Degree",
+                    icon: "uni1",
+                    year: "2010"
+                },
+                {
+                    title: "Infor. & Comm.",
+                    desc: "MSc Degree",
+                    icon: "uni2",
+                    year: "2012"
+                },
+                {
+                    title: "Parallel Computing",
+                    desc: "PhD Degree",
+                    icon: "phd",
+                    year: "2015"
+                },
+                {
+                    title: "Full-stack developer",
+                    desc: "Biome Makers",
+                    icon: "work",
+                    year: "2016-present"
+                },
+            ],
+
+            timeline_margin: 10,
+            timeline_arrow_width: 20,
+
         };
 
         data.INNER_WIDTH = data.WIDTH - data.page_margins*2;
         data.INNER_HEIGHT = data.HEIGHT - data.page_margins*2;
         data.column_width =  Math.floor(( data.INNER_WIDTH - data.column_sep*2 ) / 3);
 
-        
+
+        data.timeline_block_width = (data.INNER_WIDTH - data.timeline_margin*2) / data.timeline.length;
+        data.timeline_gradient = gradient(["#a3ed9f","#e09df4"], data.timeline.length+2);
+
+
         this.html = nunjucks.render('index.html', {...data, debug:tofile});
 
         // Remove spaces between tags

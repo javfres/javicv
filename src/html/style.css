@@ -214,3 +214,103 @@ h2 {
 .divisor + .column {
     margin-left: 0;
 }
+
+
+
+
+.timeline > .row {
+    width: {{ INNER_WIDTH - timeline_margin*2  }}px;
+    heigth: 100px;
+    margin-left: {{timeline_margin}}px;
+    margin-right: {{timeline_margin}}px;
+}
+
+.timeline > .row > .block {
+    width: {{ timeline_block_width  }}px;
+    display: inline-block;
+    text-align: center;
+}
+
+.timeline > .row > .block > p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.timeline > .row > .block > p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.timeline > .row > .block > p.title {
+    font-weight: bold;
+    color: {{primary_color}};
+}
+.timeline > .row > .block > p.desc {
+    color: {{grey_color}};
+
+    margin-top: 5px;
+    margin-bottom: 10px;
+
+}
+.timeline > .row > .block > p.year {
+    font-family: 'Share Tech Mono', monospace;
+    color: {{grey_color}};
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+.timeline > .line {
+    height: 10px;
+}
+
+.timeline > .line > * {
+    display: inline-block;
+}
+
+
+.timeline > .line > .arrow {
+    width: {{ timeline_arrow_width  }}px;
+    text-align: center;
+}
+
+.timeline > .line > .arrow svg path {
+    fill: {{timeline_gradient[0]}} !important;
+}
+
+
+
+.timeline > .line > .arrow:last-of-type svg path {
+    fill: {{timeline_gradient.slice(-1)[0] }} !important;
+}
+
+
+
+
+
+.timeline > .line > .box {
+    width: {{ timeline_block_width  }}px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: blue;
+}
+
+
+{% for i in range(0, timeline.length+1) -%}
+    .timeline > .line > .box:nth-child({{i+2}}) {
+        background-image: linear-gradient(to right, {{ timeline_gradient[i] }} , {{timeline_gradient[i+1]}});
+    }
+{%- endfor %}
+
+
+
+
+.timeline > .line > .box.side {
+    width: {{ timeline_block_width/2 - timeline_arrow_width + timeline_margin  }}px;
+}

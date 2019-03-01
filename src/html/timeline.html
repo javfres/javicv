@@ -4,4 +4,58 @@
 
     <h2>Timeline</h2>
 
+    <div class="row">
+        {% for item in timeline %}
+
+            {% set loopIndex = loop.index0 %}
+            {% set loopNumber = loop.index %}
+
+            <div class="block">
+                <p class="title">{{ item.title }}</p>
+                <p class="desc">{{ item.desc }}</p>
+                <p class="icon">   
+                    <span class="svg-primary">
+                        <img height="26" src="src/icons/{{ item.icon }}.svg" />
+                    </span>
+                </p>
+            </div>
+
+        {% endfor %}
+    </div>
+    
+
+    <div class="line">
+    
+        <div class="arrow">
+            <img height="10" src="src/icons/arrow.svg" />
+        </div>
+    
+        <div class="box side"></div>
+
+        {% for i in range(0, timeline.length-1) -%}
+            <div class="box middle"></div>
+        {%- endfor %}
+
+        <div class="box side"></div>
+
+    
+        <div class="arrow">
+            <img height="10" src="src/icons/arrow.svg" />
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        {% for item in timeline %}    
+            <div class="block">
+                <p class="year">{{ item.year }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+
+
 </div>
