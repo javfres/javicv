@@ -14,8 +14,12 @@ const gradient = require('gradient-color').default;
 
 class JaviCV {
 
-    constructor(){
+    constructor(options = {}){
+        
+        this.options = options;
+        
         this.html = null;
+        
 
         this.html_out = "dist/cv.html";
         this.pdf_out = "dist/cv.pdf";
@@ -72,14 +76,26 @@ class JaviCV {
 
         };
 
+        if(this.options.newjob){
+            data.timeline.push({
+                title: "",
+                desc: this.options.newjob,
+                icon: "chair",
+                year: new Date().getFullYear()
+            });
+        }
+
+
+
         data.INNER_WIDTH = data.WIDTH - data.page_margins*2;
         data.INNER_HEIGHT = data.HEIGHT - data.page_margins*2;
         data.column_width =  Math.floor(( data.INNER_WIDTH - data.column_sep*2 ) / 3);
 
 
         data.timeline_block_width = (data.INNER_WIDTH - data.timeline_margin*2) / data.timeline.length;
-        data.timeline_gradient = gradient(["#a3ed9f","#e09df4"], data.timeline.length+2);
+        data.timeline_gradient = gradient(["#a3ed9f", "#9ebdf3"], data.timeline.length+2);
 
+        //  "#e09df4"
 
         this.html = nunjucks.render('index.html', {...data, debug:tofile});
 
