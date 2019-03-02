@@ -1,7 +1,9 @@
 
 const fs = require('fs');
 
-
+/**
+ * Remove spaces in a html
+ */
 function remove_spaces(html){
     return html.replace( /\>\s+\</g , "><" );
 }
@@ -78,10 +80,7 @@ function inline_svg(html){
             return begin + src + end;
     
         }
-        
-
-
-
+    
         let svg = fs.readFileSync(path) + '';
 
         // Get w and h from the given img tag
@@ -177,7 +176,9 @@ function inline_css(html){
 }
 
 
-
+/*
+ * Exports
+ */
 module.exports = {
     remove_spaces,
     img_to_base64,

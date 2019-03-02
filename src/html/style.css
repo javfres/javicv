@@ -1,4 +1,7 @@
 
+/*
+ * Main styles for the body and page
+ */
 
 @page {
     size: A4 portrait;
@@ -28,7 +31,7 @@ body {
     height: {{ HEIGHT - page_margins*2 }}px;
 }
 
-
+/* Show page lines on debug*/
 {% if debug %}
 
     .page {
@@ -45,6 +48,7 @@ body {
 /*
  * Fonts
  */
+
 body {
     font-family: 'Noto Sans', sans-serif;
     font-size: 9pt;
@@ -53,14 +57,60 @@ body {
 
 
 
+/*
+ * Other common styles
+ */
 
+ /* Horizontal rule */
+ hr {
+
+    border: 2px dotted {{grey_color}};
+    border-style: none none dotted; 
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+
+
+ /* svg */
+.svg-primary svg path   {
+    fill: {{primary_color}} !important;
+}
+
+
+ /* links */
+a {
+    text-decoration: none;
+    color: {{primary_color}};
+    font-family: 'Share Tech Mono', monospace;
+}
+
+
+/* titles */
+h2 {
+    font-size: 14pt;
+    font-family: 'Share Tech Mono', monospace;
+    color: {{primary_color}};
+    margin-top: 0;
+}
+
+/* Code monospace */
+.code {
+    font-family: 'Share Tech Mono', monospace;
+}
+
+
+
+/*
+ * Header
+ */
 
 .header {
     position: relative;
     width: 100%;
     height: 160px;
 }
-
 
 .header > img.me {
 
@@ -71,10 +121,7 @@ body {
     width: 160px;
     height: 160px;
 
-    /*border-radius: 5%;*/
     filter: grayscale(70%); 
-    /*transform: scaleX(-1);*/
-
 }
 
 .header > .text {
@@ -86,7 +133,6 @@ body {
     width: 200px;
     height: 160px;
 }
-
 
 .header > .text > h1 {
     margin: 0;
@@ -138,40 +184,9 @@ body {
 
 
 
-hr {
-
-    border: 2px dotted {{grey_color}};
-    border-style: none none dotted; 
-
-    margin-top: 15px;
-    margin-bottom: 15px;
-
-}
-
-
-.svg-primary svg path   {
-    fill: {{primary_color}} !important;
-}
-
-
-
-a {
-    text-decoration: none;
-    color: {{primary_color}};
-    font-family: 'Share Tech Mono', monospace;
-}
-
-
-
-h2 {
-    font-size: 14pt;
-    font-family: 'Share Tech Mono', monospace;
-    color: {{primary_color}};
-    margin-top: 0;
-}
-
-
-
+/*
+ * Row and column layout
+ */
 
 .row > .column {
 
@@ -182,7 +197,7 @@ h2 {
     position: relative;
 }
 
- .row > .column.x2 {
+.row > .column.x2 {
     width: {{ column_width*2+column_sep }}px;
 }
 
@@ -194,29 +209,26 @@ h2 {
     margin-left: 0;
 }
 
-
 .row > .divisor {
     display: inline-block;
     vertical-align:top;
     position: relative;
 
-    /*width: {{ column_sep }}px;*/
-
     margin-left:  {{ column_sep/2-1 }}px;
     margin-right:  {{ column_sep/2-1 }}px;
-
     min-height: 10px;
 
     border-left: 2px dotted {{grey_color}};
 }
-
 
 .divisor + .column {
     margin-left: 0;
 }
 
 
-
+/**
+ * The timeline
+ */
 
 .timeline > .row {
     width: {{ INNER_WIDTH - timeline_margin*2  }}px;
@@ -260,12 +272,9 @@ h2 {
 }
 
 
-
-
-
-
-
-
+/**
+ * The color boxes
+ */
 
 .timeline > .line {
     height: 10px;
@@ -274,7 +283,6 @@ h2 {
 .timeline > .line > * {
     display: inline-block;
 }
-
 
 .timeline > .line > .arrow {
     width: {{ timeline_arrow_width  }}px;
@@ -285,15 +293,9 @@ h2 {
     fill: {{timeline_gradient[0]}} !important;
 }
 
-
-
 .timeline > .line > .arrow:last-of-type svg path {
     fill: {{timeline_gradient.slice(-1)[0] }} !important;
 }
-
-
-
-
 
 .timeline > .line > .box {
     width: {{ timeline_block_width  }}px;
@@ -302,7 +304,6 @@ h2 {
     background-color: blue;
 }
 
-
 {% for i in range(0, timeline.length+1) -%}
     .timeline > .line > .box:nth-child({{i+2}}) {
         background-image: linear-gradient(to right, {{ timeline_gradient[i] }} , {{timeline_gradient[i+1]}});
@@ -310,18 +311,19 @@ h2 {
 {%- endfor %}
 
 
-
-
 .timeline > .line > .box.side {
     width: {{ timeline_block_width/2 - timeline_arrow_width + timeline_margin  }}px;
 }
 
 
+/**
+ * Work experience
+ */
+
 .job {
     position: relative;
     margin-top: 10px;
     margin-bottom: 25px;
-
 }
 
 .job > .logo {
@@ -360,7 +362,6 @@ h2 {
     right: 0;
 }
 
-
 .job > .text > .title {
     position: relative;
     font-weight: bold;
@@ -395,7 +396,9 @@ h2 {
 }
 
 
-
+/**
+ * About me
+ */
 
 .aboutme .text {
     font-size: 10pt;
@@ -404,9 +407,9 @@ h2 {
 
 
 
-
-
-
+/**
+ * Skills
+ */
 
 .skills > .tags {
     text-align: center;
@@ -416,11 +419,13 @@ h2 {
 
 .skills > .tags > .tag {
    color: white;
+
+   background-color: rgb(158,189,243);
    background-color: {{ grey_color }};
+   opacity: 0.8;
 
    font-family: 'Share Tech Mono', monospace;
    font-size: 10px;
-
 
    padding: 3px;
    padding-left: 10px;
@@ -432,8 +437,6 @@ h2 {
 
    border-radius: 4px;
 
-   opacity: 0.8;
-
    display: inline-block;
 }
 
@@ -441,29 +444,20 @@ h2 {
 
 
 
-
-
-
-
-.code {
-    font-family: 'Share Tech Mono', monospace;
-}
-
-
+/**
+ * This cv footer
+ */
 
 .thiscv {
     position: absolute;
     left: 0;
     bottom: 0;
     zoom: 0.8;
-
-    /**    width: 100%; */
 }
 
 .thiscv p {
    
     margin-bottom: 0;
-
     padding-right: 50px;
 
 }

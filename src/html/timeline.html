@@ -4,11 +4,9 @@
 
     <h2>Timeline</h2>
 
+    <!-- Row with the jobs and icons -->
     <div class="row">
         {% for item in timeline %}
-
-            {% set loopIndex = loop.index0 %}
-            {% set loopNumber = loop.index %}
 
             <div class="block">
                 <p class="title">{{ item.title }}</p>
@@ -23,7 +21,7 @@
         {% endfor %}
     </div>
     
-
+    <!-- The color rounded boxes -->
     <div class="line">
     
         <div class="arrow">
@@ -38,14 +36,13 @@
 
         <div class="box side"></div>
 
-    
         <div class="arrow">
             <img height="10" src="src/icons/arrow.svg" />
         </div>
 
     </div>
 
-
+    <!-- Row with the years -->
     <div class="row">
         {% for item in timeline %}    
             <div class="block">
@@ -53,9 +50,6 @@
             </div>
         {% endfor %}
     </div>
-
-
-
 
 
 </div>
