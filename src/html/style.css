@@ -314,3 +314,17 @@ h2 {
 .timeline > .line > .box.side {
     width: {{ timeline_block_width/2 - timeline_arrow_width + timeline_margin  }}px;
 }
+
+
+.code {
+    font-family: 'Share Tech Mono', monospace;
+}
+
+
+
+.thiscv {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    zoom: 0.8;
+}
