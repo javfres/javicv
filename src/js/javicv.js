@@ -49,7 +49,7 @@ class JaviCV {
     // Just console.log
     //
     say(msg){
-        console.log(svg);
+        console.log(msg);
     }
 
 
@@ -170,6 +170,8 @@ class JaviCV {
             // Call pdf pupetter
             pdfpuppeteer(this.html, callback, pdfoptions);
 
+        }).catch(() => {
+            console.error("Ummmm, it didn't work");
         });
 
     } // build_pdf
