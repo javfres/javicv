@@ -1,6 +1,8 @@
 
-const JaviCV = require('./src/js/javicv');
+const Javi = require('./src/js/javicv');
+const dreamJobCo = process.argv[2];
 
-const javicv = new JaviCV({newjob:"????"});
-javicv.build_html();
-javicv.build_pdf();
+const javi = new Javi();
+javi.findJob(dreamJobCo).then(() => {
+    console.log('Hurray!!');
+});

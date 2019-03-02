@@ -14,12 +14,9 @@ const gradient = require('gradient-color').default;
 
 class JaviCV {
 
-    constructor(options = {}){
-        
-        this.options = options;
-        
+    constructor(){
+                
         this.html = null;
-        
 
         this.html_out = "dist/cv.html";
         this.pdf_out = "dist/cv.pdf";
@@ -27,6 +24,13 @@ class JaviCV {
         nunjucks.configure('src/html', { autoescape: true });
 
     }
+
+    findJob(company = '???'){
+        this.futureCompany = company + '??';
+        this.build_html();
+        return this.build_pdf();
+    }
+
 
     build_html(tofile = true){
 
@@ -76,14 +80,13 @@ class JaviCV {
 
         };
 
-        if(this.options.newjob){
-            data.timeline.push({
-                title: "",
-                desc: this.options.newjob,
-                icon: "chair",
-                year: new Date().getFullYear()
-            });
-        }
+        data.timeline.push({
+            title: "",
+            desc: this.futureCompany,
+            icon: "chair",
+            year: new Date().getFullYear()
+        });
+    
 
 
 
@@ -125,12 +128,23 @@ class JaviCV {
             printBackground: true,
             preferCSSPageSize: true,
         }
-        const callback = pdf => {
-            fs.writeFileSync(this.pdf_out, pdf);
-            this.set_metadata();
-        }
-    
-        pdfpuppeteer(this.html, callback, pdfoptions);
+
+        return new Promise((resolve, reject) => {
+           
+            const callback = pdf => {
+                fs.writeFileSync(this.pdf_out, pdf);
+                this.set_metadata();
+
+                if(pdf) {
+                    resolve();
+                } else {
+                    reject();
+                }
+            }
+        
+            pdfpuppeteer(this.html, callback, pdfoptions);
+
+        });
 
     }
 
