@@ -3,3 +3,5 @@ node_modules
 dist/*.html
 dist/*.pdf
 npm-debug.log
+
+.vscode
