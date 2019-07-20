@@ -1,7 +1,10 @@
 
 # Javier
 
-This is as simple as:
+![My CV photo](/doc/photo_screen_cv.jpg)
+
+
+My CV, this is as simple as:
 
 ```
 const Javi = require('./src/js/javicv');
@@ -27,5 +30,8 @@ npm run build
 
 * pdf-puppeteer doesn't not work with inkscape svgs.
     I had to ensure viewbox is the same as H and W and remove custom inkscape tags. 
-* TODO: lang
 * Icon made by Freepik from www.flaticon.com 
+* TODOs: 
+    * [ ] Localization: Support for different langs
+    * [ ] Put this into a Docker
+    * [ ] Some scss would be nice
