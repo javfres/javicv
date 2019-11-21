@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+
+        {% block head %}
+        {% endblock %}
+
+        <style>
+            {{ css_style | safe }}
+        </style>
+
+    </head>
+
+    <body>
+        {% block content %}
+           
+            <div class="page">
+                <div class="inner">
+                    This is the default content
+                </div>
+            </div>
+
+            <div class="page">
+                <div class="inner">
+                    Second page
+                </div>
+                
+            </div>
+
+        {% endblock %}
+    </body>
+</html>
+
+
+
+

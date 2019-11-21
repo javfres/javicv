@@ -1,9 +1,10 @@
 //
 // All imports
 //
+
+/*
 const nunjucks = require('nunjucks');
 const fs = require('fs');
-const pdfpuppeteer = require("pdf-puppeteer");
 const setmetadata = require("./metadata");
 const {
     remove_spaces,
@@ -12,72 +13,23 @@ const {
     inline_svg,
 } = require('./htmlutils');
 const gradient = require('gradient-color').default;
+*/
 
-
-
+import CV from './cv';
 
 //
 // My CV class
 //
-export default class JaviCV {
-
-    html: string|null;
-    html_out: string;
-    pdf_out:string;
-    futureCompany: string|null;
-
-
-    //
-    // Constructor
-    //
-    constructor(){
-                
-        this.html = null;
-        this.futureCompany = null;
-
-        this.html_out = "dist/cv.html";
-        this.pdf_out = "dist/cv.pdf";
-
-        // Start nunjucks
-        nunjucks.configure('src/html', { autoescape: true });
-    } // constructor
-
+export default class JaviCV extends CV {
 
     //
     // Generate both html and pdf
     //
-    findJob(company = '???'){
-        this.futureCompany = company + '??';
-        this.build_html();
-        return this.build_pdf();
-    }
+    findJob(company:string = ''): Promise<void> {
 
-    //
-    // Just console.log
-    //
-    say(msg:string){
-        console.log(msg);
-    }
+        const futureCompany = company ? (company+'??') : '???';
 
-
-    //
-    // Build the thml
-    //
-    build_html(tofile = true){
-
-        // Build the data neede for nunjucks
-        let data = {
-
-            // 96 pdi
-            WIDTH: 794,
-            HEIGHT: 1123,
-
-            primary_color: 'rgb(65,65,65)',
-            grey_color: 'rgb(115,115,115)',
-
-            page_margins: 40,
-            column_sep: 30,
-
+        const data = {
             timeline: [
                 {
                     title: "Computer Science",
@@ -104,19 +56,37 @@ export default class JaviCV {
                     year: "2016-present"
                 },
             ],
-
-            timeline_margin: 10,
-            timeline_arrow_width: 20,
-
         };
 
         // Extra future job
         data.timeline.push({
             title: "",
-            desc: this.futureCompany,
+            desc: futureCompany,
             icon: "chair",
-            year: new Date().getFullYear()
+            year: "" + new Date().getFullYear()
         });
+
+        return this.build('index', data);
+    }
+
+    //
+    // Just console.log
+    //
+    say(msg:string){
+        console.log(msg);
+    }
+
+
+
+    /*
+  
+
+    //
+    // Build the thml
+    //
+    build_html(tofile = true){
+
+
     
         // Page calculations
         data.INNER_WIDTH = data.WIDTH - data.page_margins*2;
@@ -126,21 +96,6 @@ export default class JaviCV {
         // Timeline calculations
         data.timeline_block_width = (data.INNER_WIDTH - data.timeline_margin*2) / data.timeline.length;
         data.timeline_gradient = gradient(["#a3ed9f", "#9ebdf3"], data.timeline.length+2);
-
-        // Render the html
-        this.html = nunjucks.render('index.html', {...data, debug:tofile});
-
-        // Remove spaces between tags
-        this.html = remove_spaces(this.html);
-
-        // Imgs
-        this.html = img_to_base64(this.html, false);
-        this.html = inline_svg(this.html);
-
-        // CSS
-        this.html = inline_css(this.html);
-
-        if(tofile) fs.writeFileSync(this.html_out, this.html);
 
     } // build_html
 
@@ -196,5 +151,7 @@ export default class JaviCV {
             'Keywords+': [ 'Software engineer', 'PhD Computer Science', 'Full stack' ],
         });
     } // set_metadata
+
+    */
 
 } // JaviCV class

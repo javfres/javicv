@@ -87,7 +87,9 @@ export function inline_svg(html:string){
         let w = re_w.exec(begin + " " + end);
         let h = re_h.exec(begin + " " + end);
 
+        // @ts-ignore
         if(w) w = w[1];
+        // @ts-ignore
         if(h) h = h[1];
         
         svg = svg.replace(re_w, function(str){
@@ -130,6 +132,7 @@ export function path_to_type(path:string){
 
     if(path.startsWith('data:')) return 'data';
 
+    // @ts-ignore
     const extension = path.split('.').pop().toLowerCase();
 
     switch(extension){

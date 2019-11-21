@@ -1,5 +1,6 @@
 
-// Requere my class 
+
+// Require the CV class
 import JaviCV from './src/ts/javicv';
 
 // Get company name from args (or undefined)

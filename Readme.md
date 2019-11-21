@@ -7,16 +7,15 @@
 My CV, this is as simple as:
 
 ```
-const Javi = require('./src/js/javicv');
+import JaviCV from './src/ts/javicv';
 const dreamJobCo = 'Your company';
 
-const javi = new Javi();
+const javi = new JaviCV();
 javi.findJob(dreamJobCo).then(() => {
     javi.say('Hurray!!');
 });
 
 ```
-
 
 ## Usage
 
@@ -28,11 +27,22 @@ npm run build
 
 ## Notes for myself
 
-* pdf-puppeteer doesn't not work with inkscape svgs.
-    I had to ensure viewbox is the same as H and W and remove custom inkscape tags. 
 * Icon made by Freepik from www.flaticon.com 
 * TODOs: 
     * [ ] Localization: Support for different langs
     * [ ] Put this into a Docker
-    * [ ] Some scss would be nice
-    * [ ] Check out https://stackoverflow.com/questions/38276862/is-there-a-way-to-use-npm-scripts-to-run-tsc-watch-nodemon-watch
+    * [X] Some scss would be nice
+* New version uses:
+    * Typescript
+    * SCSS
+* New version stops using:
+    * pdf-puppeteer. Now I am calling manually to puppeteer.
+* NPM scripts:
+    * `npm run tsc`: Runs typescript and generates the plain JS files
+    * `npm run tsc-watch`: Runs typescript in watch mode
+    * `npm run build`: Runs typescript and calls the script to generate the pdf
+    * `npm run pdf`: Runs the JS script to generate the pdf
+    * `npm run pdf-watch`: Watch to changes in the JS, SCSS or templates to generate the pdf
+    * `npm run dev`: Runs concurrently `tsc-watch` and `pdf-watch`
+
+

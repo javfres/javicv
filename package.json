@@ -6,8 +6,10 @@
   "scripts": {
     "tsc": "tsc",
     "tsc-watch": "tsc -w",
-    "build": "tsc && node build/index.js",
-    "watch": "nodemon --ext ts,scss,html  --exec \"npm run build\""
+    "build": "tsc && npm run pdf",
+    "pdf": "node build/index.js",
+    "pdf-watch": "nodemon --ext js,scss,njk  --exec \"npm run pdf\"",
+    "dev": "concurrently -k -n \"TypeScript,Node PDF\" -c \"yellow.bold,cyan.bold\" \"npm run tsc-watch\" \"npm run pdf-watch\""
   },
   "keywords": [
     "CV",
@@ -16,6 +18,7 @@
   "author": "javfres",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^5.0.0",
     "dist-exiftool": "^10.53.0",
     "gradient-color": "^2.0.1",
     "node-exiftool": "^2.3.0",

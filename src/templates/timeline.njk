@@ -9,13 +9,13 @@
         {% for item in timeline %}
 
             <div class="block">
-                <p class="title">{{ item.title }}</p>
-                <p class="desc">{{ item.desc }}</p>
-                <p class="icon">   
+                <div class="title">{{ item.title }}</div>
+                <div class="desc">{{ item.desc }}</div>
+                <div class="icon">   
                     <span class="svg-primary">
-                        <img height="30" src="src/icons/{{ item.icon }}.svg" />
+                        {{ inlineSVG('icons/' + item.icon +'.svg') | safe }}
                     </span>
-                </p>
+                </div>
             </div>
 
         {% endfor %}
@@ -25,19 +25,23 @@
     <div class="line">
     
         <div class="arrow">
-            <img height="10" src="src/icons/arrow.svg" />
+          <!--  {{ inlineSVG('icons/arrow.svg') | safe }}-->
         </div>
     
         <div class="box side"></div>
 
-        {% for i in range(0, timeline.length-1) -%}
-            <div class="box middle"></div>
-        {%- endfor %}
+        <div class="main">
+            {% for i in range(0, timeline.length-1) -%}
+                <div class="box middle"></div>
+            {%- endfor %}
+        </div>
 
         <div class="box side"></div>
 
         <div class="arrow">
-            <img height="10" src="src/icons/arrow.svg" />
+
+             <!--{{ inlineSVG('icons/arrow.svg') | safe }}-->
+
         </div>
 
     </div>
