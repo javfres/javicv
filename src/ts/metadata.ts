@@ -5,7 +5,7 @@ const exiftoolBin = require('dist-exiftool');
 /**
  * Replace the pdf metadata
  */
-module.exports = function(pdf_file, metadata){
+module.exports = function(pdf_file:string, metadata:any){
 
     const ep = new exiftool.ExiftoolProcess(exiftoolBin);
 

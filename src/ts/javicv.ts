@@ -19,7 +19,13 @@ const gradient = require('gradient-color').default;
 //
 // My CV class
 //
-class JaviCV {
+export default class JaviCV {
+
+    html: string|null;
+    html_out: string;
+    pdf_out:string;
+    futureCompany: string|null;
+
 
     //
     // Constructor
@@ -27,6 +33,7 @@ class JaviCV {
     constructor(){
                 
         this.html = null;
+        this.futureCompany = null;
 
         this.html_out = "dist/cv.html";
         this.pdf_out = "dist/cv.pdf";
@@ -48,7 +55,7 @@ class JaviCV {
     //
     // Just console.log
     //
-    say(msg){
+    say(msg:string){
         console.log(msg);
     }
 
@@ -191,9 +198,3 @@ class JaviCV {
     } // set_metadata
 
 } // JaviCV class
-
-
-//
-// Module exports
-//
-module.exports = JaviCV;

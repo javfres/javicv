@@ -1,10 +1,10 @@
 
-const fs = require('fs');
+import fs from 'fs';
 
 /**
  * Remove spaces in a html
  */
-function remove_spaces(html){
+export function remove_spaces(html:string){
     return html.replace( /\>\s+\</g , "><" );
 }
 
@@ -12,7 +12,7 @@ function remove_spaces(html){
 /**
  * Replace the images to base64 images
  */
-function img_to_base64(html, alsosvg = true){
+export function img_to_base64(html:string, alsosvg:boolean = true){
 
     const re = /\<img([\w\W]+?)\>/g;
     const re2 = /(\<img\s[^>]*?)src\s*=\s*['\"]([^'\"]*?)['\"]([^>]*?\>)/;
@@ -43,7 +43,7 @@ function img_to_base64(html, alsosvg = true){
 /*
  * Inline the svg into the html
  */
-function inline_svg(html){
+export function inline_svg(html:string){
 
     const re = /\<img([\w\W]+?)\>/g;
     const re2 = /(\<img\s[^>]*?)src\s*=\s*['\"]([^'\"]*?)['\"]([^>]*?\>)/;
@@ -112,7 +112,7 @@ function inline_svg(html){
 /*
  * Encode a file in base64 format
  */
-function base64_encode(file) {
+export function base64_encode(file:string) {
 
     // read binary data
     var bitmap = fs.readFileSync(file);
@@ -126,7 +126,7 @@ function base64_encode(file) {
 /*
  * Obtain the mime type from the extension of the file
  */
-function path_to_type(path){
+export function path_to_type(path:string){
 
     if(path.startsWith('data:')) return 'data';
 
@@ -151,7 +151,7 @@ function path_to_type(path){
 /*
  * Inline the css into the html
  */
-function inline_css(html){
+export function inline_css(html:string){
 
     const re = /\<link([\w\W]+?)\>/g;
     const re2 = /(\<link\s[^>]*?)href\s*=\s*['\"]([^'\"]*?)['\"]([^>]*?\>)/;
@@ -174,14 +174,3 @@ function inline_css(html){
     });
 
 }
-
-
-/*
- * Exports
- */
-module.exports = {
-    remove_spaces,
-    img_to_base64,
-    inline_svg,
-    inline_css,
-};
