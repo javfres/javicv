@@ -35,3 +35,4 @@ npm run build
     * [ ] Localization: Support for different langs
     * [ ] Put this into a Docker
     * [ ] Some scss would be nice
+    * [ ] Check out https://stackoverflow.com/questions/38276862/is-there-a-way-to-use-npm-scripts-to-run-tsc-watch-nodemon-watch
