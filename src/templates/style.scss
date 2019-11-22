@@ -389,7 +389,7 @@ $gradient_2: #9ebdf3;
 
         }
 
-        &:first-of-type svg path {
+        svg path {
             fill: $gradient_1 !important;
         }
         &:last-of-type svg path {
