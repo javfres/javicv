@@ -64,3 +64,6 @@ npm run build
     * `npm run dev`: Runs concurrently `tsc-watch` and `pdf-watch`
 
 
+### Docker
+
+docker build -t javfres/cv .
