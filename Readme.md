@@ -47,14 +47,14 @@ npm run build
 * Icon made by Freepik from www.flaticon.com 
 * TODOs: 
     * [ ] Localization: Support for different langs
-    * [ ] Put this into a Docker
+    * [X] Put this into a Docker
     * [X] Some scss would be nice
     * [X] Reduce pdf size with ghostscript
 * New version uses:
     * Typescript
     * SCSS
 * New version stops using:
-    * pdf-puppeteer. Now I am calling manually to puppeteer.
+    * pdf-puppeteer. Now I am calling puppeteer manually.
 * NPM scripts:
     * `npm run tsc`: Runs typescript and generates the plain JS files
     * `npm run tsc-watch`: Runs typescript in watch mode
@@ -66,4 +66,29 @@ npm run build
 
 ### Docker
 
+I dockerized this node project just for fun.
+These are the instructions to create the image from the Dockerfile
+and to run that image to generate the pdf.
+The docker version does not contains gs so the *reduce pdf size* stage
+will show a warning although the final pdf is generated.
+
+Create the image
+
+```
 docker build -t javfres/cv .
+```
+
+Render the pdf
+
+```
+touch ./dist/cv.pdf \
+&& docker run --rm -v${PWD}/dist/cv.pdf:/cv/dist/cv.pdf javfres/cv npm run pdf
+```
+
+Interactive for debug
+
+```
+docker run --rm -it javfres/cv /bin/bash
+```
+
+

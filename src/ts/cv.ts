@@ -90,7 +90,10 @@ export default class CV {
     private async render_pdf(html:string, metadata:{}={}): Promise<void>{
 
         // Start puppeteer
-        const browser = await puppeteer.launch({headless:true});
+        const browser = await puppeteer.launch({
+            headless:true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox'] // For docker 
+        });
         const page = await browser.newPage();
 
         // Load the content
