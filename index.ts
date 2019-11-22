@@ -7,7 +7,20 @@ import JaviCV from './src/ts/javicv';
 const dreamJobCo = process.argv[2];
 
 // Build the CV
+/*
 const javi = new JaviCV();
 javi.findJob(dreamJobCo).then(() => {
     javi.say('Hurray!!');
 });
+*/
+
+
+(async () => {
+
+    const javi = new JaviCV();
+
+    await javi.findJob(dreamJobCo);
+
+    javi.say('Hurray!!');
+
+})(); 

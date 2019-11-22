@@ -9,7 +9,7 @@ import fs from 'fs';
 import base64_img from './base64img';
 import inlineSVG from './inlineSVG';
 import setPDFMetadata from './metadata';
-
+import reducePDF from './reducePDF';
 //
 // Configure nunjucks
 //
@@ -104,9 +104,15 @@ export default class CV {
         // Close puppet
         await browser.close();
 
+        // Reduce pdf size
+        await reducePDF(this.PDF_OUT);
+
+
         // Set the metadata
         await setPDFMetadata(this.PDF_OUT, metadata);
 
     }
+
+
 
 }

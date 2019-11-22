@@ -17,6 +17,23 @@ javi.findJob(dreamJobCo).then(() => {
 
 ```
 
+or if you prefer async functions over promisses:
+
+```
+import JaviCV from './src/ts/javicv';
+const dreamJobCo = 'Your company';
+
+(async () => {
+
+    const javi = new JaviCV();
+    await javi.findJob(dreamJobCo);
+    javi.say('Hurray!!');
+
+})(); 
+
+```
+
+
 ## Usage
 
 ```
@@ -32,6 +49,7 @@ npm run build
     * [ ] Localization: Support for different langs
     * [ ] Put this into a Docker
     * [X] Some scss would be nice
+    * [X] Reduce pdf size with ghostscript
 * New version uses:
     * Typescript
     * SCSS
