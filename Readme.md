@@ -17,7 +17,7 @@ javi.findJob(dreamJobCo).then(() => {
 
 ```
 
-or if you prefer async functions over promisses:
+or if you prefer async functions over promises:
 
 ```
 import JaviCV from './src/ts/javicv';
