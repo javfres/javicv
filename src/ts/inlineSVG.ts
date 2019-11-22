@@ -4,15 +4,12 @@
 //
 import fs from 'fs';
 
+/**
+ * Just reads a svg file
+ * @param path 
+ */
+export default function inlineSVG(path:string): string {
 
-export default function inlineSVG(path:string): string{
-
-    // read svg
-    const svg = fs.readFileSync(`src/${path}`, 'utf-8');
-
-
-    inlineSVG
-
-    return svg;
+    return fs.readFileSync(`src/${path}`, 'utf-8');
    
 }

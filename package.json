@@ -8,8 +8,9 @@
     "tsc-watch": "tsc -w",
     "build": "tsc && npm run pdf",
     "pdf": "node build/index.js",
-    "pdf-watch": "nodemon --ext js,scss,njk  --exec \"npm run pdf\"",
-    "dev": "concurrently -k -n \"TypeScript,Node PDF\" -c \"yellow.bold,cyan.bold\" \"npm run tsc-watch\" \"npm run pdf-watch\""
+    "pdf-watch": "nodemon --ext js,scss,njk --watch src --watch build --exec \"npm run pdf\"",
+    "pdf-watch-delay-init": "sleep 10 && npm run pdf-watch",
+    "dev": "concurrently -k -n \"TypeScript,Node PDF\" -c \"yellow.bold,cyan.bold\" \"npm run tsc-watch\" \"npm run pdf-watch-delay-init\""
   },
   "keywords": [
     "CV",

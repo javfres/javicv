@@ -1,21 +1,25 @@
-
-const exiftool = require('node-exiftool');
-const exiftoolBin = require('dist-exiftool');
+//
+// Includes (they do not have @types/ modules)
+//
+// @ts-ignore
+import exiftool from 'node-exiftool';
+// @ts-ignore
+import exiftoolBin from 'dist-exiftool';
 
 /**
  * Replace the pdf metadata
  */
-module.exports = function(pdf_file:string, metadata:any){
+export default async function(pdf_file:string, metadata:any){
 
+    const options = {
+        all: '', // remove existing tags
+        ...metadata
+    }
+
+    // Use exif tool
     const ep = new exiftool.ExiftoolProcess(exiftoolBin);
-
-    ep.open()
-        .then(() => ep.writeMetadata(pdf_file, {
-            all: '', // remove existing tags
-            ...metadata
-        }, ['overwrite_original']))
-        //.then(console.log, console.error)
-        .then(() => ep.close())
-        .catch(console.error);
+    await ep.open();
+    await ep.writeMetadata(pdf_file, options, ['overwrite_original']);
+    await ep.close();
 
 };

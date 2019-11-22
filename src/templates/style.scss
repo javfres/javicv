@@ -273,6 +273,7 @@ $timeline_arrow_width: 20px;
 .timeline {
     
     .row {
+
         width: $inner_width - $timeline_margin * 2 ;
         margin-left: $timeline_margin;
         margin-right: $timeline_margin;
@@ -330,6 +331,42 @@ $gradient_1: #a3ed9f;
 $gradient_2: #9ebdf3;
 
 .timeline > .line {
+
+    position: relative;
+
+    .row {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        .triangle {
+            height: 10px;
+
+            div {
+                display: block;
+                margin: auto;
+                width: 10px;
+                height: 10px;
+                position: relative;
+        
+                svg {
+                    top: -2px;
+                    left: 0;
+                    position: absolute;
+                    display: block;
+                    width: 10px;
+                    height: 10px;
+
+                    path {
+                        fill: #ffffff !important; 
+                    }
+
+                }
+            }
+
+        }
+
+    }
 
     margin-top: 2px;
     height: 10px;
