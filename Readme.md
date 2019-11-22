@@ -91,4 +91,6 @@ Interactive for debug
 docker run --rm -it javfres/cv /bin/bash
 ```
 
+**Note** It looks that the fonts are not correctly render in docker due to the sandbox.
+
 

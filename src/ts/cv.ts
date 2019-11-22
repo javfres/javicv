@@ -92,7 +92,7 @@ export default class CV {
         // Start puppeteer
         const browser = await puppeteer.launch({
             headless:true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'] // For docker 
+            // args: ['--no-sandbox', '--disable-setuid-sandbox'] // For docker 
         });
         const page = await browser.newPage();
 
