@@ -72,14 +72,28 @@ export default class CV {
 
         console.log("Render pdf");
 
-        const browser = await puppeteer.launch({headless:true});
-        const page = await browser.newPage();
+        try {
 
-        await page.setContent( html, {waitUntil:"networkidle0"});
+            const browser = await puppeteer.launch({headless:true});
+            const page = await browser.newPage();
 
-        await page.pdf({path:this.PDF_OUT, preferCSSPageSize:true});
+            await page.setContent( html, {waitUntil:"networkidle0"});
 
-        return browser.close();
+            console.log('network iddle');
+
+            // Wait a second
+            await new Promise(r => setTimeout(r, 1000));
+
+            await page.pdf({path:this.PDF_OUT, preferCSSPageSize:true});
+
+            await browser.close();
+
+        } catch(e){
+            console.error(e);
+            throw e;
+        }
+
+        return new Promise(r => r());
 
     }
 
