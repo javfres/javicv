@@ -1,18 +1,20 @@
 //
 // All imports
 //
-import CV from './cv';
+import CV2 from './cv2';
 
 
 /**
  * My CV class
  */
-export default class JaviCV extends CV {
+export default class JaviCV extends CV2 {
+
+    static readonly PDF_OUT:string = 'cv.pdf';
 
     /**
      * Generate both html and pdf
      */
-    findJob(company:string = ''): Promise<void> {
+    findJob(company:string = '', debug=false): Promise<void> {
 
         // Optional name of the company
         const futureCompany = company ? (company+'??') : '???';
@@ -65,7 +67,12 @@ export default class JaviCV extends CV {
             'Creator': 'Javi Node.js+TSC+SASS+HTML',
         };
 
-        return this.build('index', data, pdf_metadata);
+
+        if(debug){
+            return this.debug(data);
+        }
+
+        return this.render(data, JaviCV.PDF_OUT, pdf_metadata);
     }
 
     /**

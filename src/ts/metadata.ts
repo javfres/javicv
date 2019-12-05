@@ -9,7 +9,7 @@ import exiftoolBin from 'dist-exiftool';
 /**
  * Replace the pdf metadata
  */
-export default async function(pdf_file:string, metadata:any){
+export default async function setPDFMetadata(pdf_file:string, metadata:any){
 
     const options = {
         all: '', // remove existing tags
