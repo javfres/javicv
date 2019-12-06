@@ -15,7 +15,7 @@ export default class JaviCV extends CV2 {
     /**
      * Generate both html and pdf
      */
-    findJob(company:string|null = null, debug=false): Promise<void> {
+    findJob(company:string|null = null, year:number|null = null, debug=false): Promise<void> {
 
         // Optional name of the company
         const futureCompany = company ? (company+'??') : '???';
@@ -55,7 +55,7 @@ export default class JaviCV extends CV2 {
             title: "",
             desc: futureCompany,
             icon: "chair",
-            year: "" + new Date().getFullYear()
+            year: "" + ( year || new Date().getFullYear())
         });
 
 

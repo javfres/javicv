@@ -7,7 +7,7 @@
 My CV, this is as simple as:
 
 ```
-import JaviCV from './src/ts/javicv';
+const JaviCV = require('@javfres/javicv').default;
 const dreamJobCo = 'Your company';
 
 const javi = new JaviCV();
@@ -20,7 +20,7 @@ javi.findJob(dreamJobCo).then(() => {
 or if you prefer async functions over promises:
 
 ```
-import JaviCV from './src/ts/javicv';
+const JaviCV = require('@javfres/javicv').default;
 const dreamJobCo = 'Your company';
 
 (async () => {
@@ -38,8 +38,16 @@ const dreamJobCo = 'Your company';
 
 ```
 npm install
-npm run build
+npm run cv
 ```
+
+or
+
+```
+npm install
+npm run cv "Company name"
+```
+
 
 
 ## Notes for myself
@@ -58,11 +66,9 @@ npm run build
 * NPM scripts:
     * `npm run tsc`: Runs typescript and generates the plain JS files
     * `npm run tsc-watch`: Runs typescript in watch mode
-    * `npm run build`: Runs typescript and calls the script to generate the pdf
-    * `npm run pdf`: Runs the JS script to generate the pdf
-    * `npm run pdf-watch`: Watch to changes in the JS, SCSS or templates to generate the pdf
-    * `npm run dev`: Runs concurrently `tsc-watch` and `pdf-watch`
-
+    * `npm run cv`: Calls the script to generate the pdf
+    * `npm run dev`: Runs concurrently typescript and the debug server
+    * `npm run dev-server`: Just runs the express server in debug mode on port 4444
 
 ### Docker
 
@@ -81,8 +87,8 @@ docker build -t javfres/cv .
 Render the pdf
 
 ```
-touch ./dist/cv.pdf \
-&& docker run --rm -v${PWD}/dist/cv.pdf:/cv/dist/cv.pdf javfres/cv npm run pdf
+touch ./cv.pdf \
+&& docker run --rm -v${PWD}/cv.pdf:/cv/cv.pdf javfres/cv npm run cv
 ```
 
 Interactive for debug

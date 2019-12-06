@@ -30,7 +30,7 @@ export default class Server {
     async start(debug=false){
 
         // Init the template library
-        nunjucks.configure('src/templates/', { autoescape: true, noCache:true });
+        nunjucks.configure( __dirname + '/../../src/templates/', { autoescape: true, noCache:true });
 
         //
         // Create the server
@@ -94,7 +94,7 @@ export default class Server {
                 return;
             }
 
-            const html = nunjucks.render('index.njk', {
+            const html = nunjucks.render( 'index.njk', {
                 ...this.data,
                 inlineSVG
             });
@@ -106,7 +106,7 @@ export default class Server {
 
             res.setHeader('Content-Type', 'text/css');
 
-            sass.render({file: 'src/style/main.scss'}, (err, sass_res) => {
+            sass.render({file:  __dirname + '/../../src/style/main.scss'}, (err, sass_res) => {
 
                 if(err){
                     console.error(err);
@@ -122,7 +122,7 @@ export default class Server {
         });
 
         // Static imgs route
-        this.app.use('/imgs', express.static('src/imgs'));
+        this.app.use('/imgs', express.static(  __dirname + '/../../src/imgs'));
 
     } // init_routes
 

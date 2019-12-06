@@ -10,6 +10,6 @@ import fs from 'fs';
  */
 export default function inlineSVG(path:string): string {
 
-    return fs.readFileSync(`src/${path}`, 'utf-8');
+    return fs.readFileSync( __dirname + `/../../src/${path}`, 'utf-8');
    
 }

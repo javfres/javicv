@@ -30,7 +30,4 @@ COPY src/ ./src
 # Create the output folder
 RUN mkdir dist
 
-# Comple the typescript
-RUN npm run tsc
-
-# The resulting image is ready to render the pdf with 'npm run pdf'
+# The resulting image is ready to render the pdf with 'npm run cv'
