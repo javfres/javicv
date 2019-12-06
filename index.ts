@@ -1,37 +1,46 @@
 
 
-// Require the CV class
+//
+// Imports
+//
 import JaviCV from './src/ts/javicv';
-import CV2 from './src/ts/cv2';
+import yargs from 'yargs';
 
-// Get company name from args (or undefined)
-const dreamJobCo = process.argv[2];
 
+//
+// Read command arguments
+//
+const argv = yargs
+    .usage('Usage: $0 [options] <dream-job-company>')
+    .alias('d', 'debug')
+    .describe('d', 'Debug mode')
+    .default('d', false)
+    .help('h')
+    .alias('h', 'help')
+    .argv;
+
+
+// Get company name from argv
+const dreamJobCo = argv._.join(' ') || null;
+
+//
 // Build the CV
+//
+(async () => {
+
+    const javi = new JaviCV();
+
+    await javi.findJob(dreamJobCo, !!argv.debug);
+
+    javi.say('Hurray!!');
+
+})();
+
+
+// Build the CV ES5
 /*
 const javi = new JaviCV();
 javi.findJob(dreamJobCo).then(() => {
     javi.say('Hurray!!');
 });
-*/
-
-
-(async () => {
-
-    const javi = new JaviCV();
-
-    await javi.findJob(dreamJobCo, true);
-
-    javi.say('Hurray!!');
-
-})(); 
-
-
-/*
-(async () => {
-
-    const cv2 = new CV2();
-    cv2.debug();
-
-})(); 
 */

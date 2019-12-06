@@ -1,0 +1,39 @@
+/*
+ * Other common styles
+ */
+
+// Horizontal rule
+hr {
+
+    border: 2px dotted $grey_color;
+    border-style: none none dotted; 
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+// svg
+.svg-primary svg path   {
+    fill: $primary_color !important;
+}
+
+
+// links
+a {
+    text-decoration: none;
+    color: $primary_color;
+    font-family: $font_monospace;
+}
+
+// titles
+h2 {
+    font-size: 14pt;
+    font-family: $font_monospace;
+    color: $primary_color;
+    margin-top: 0;
+}
+
+// Code monospace
+.code {
+    font-family: $font_monospace;
+}

@@ -1,0 +1,48 @@
+
+/*
+ * Main styles for the body and page
+ */
+
+@page {
+    size: A4 portrait;
+    margin: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+@media print { body { -webkit-print-color-adjust: exact; } }
+
+
+.page {
+    position: relative;
+    page-break-after: always;
+    width: $page_width;
+    height: $page_height;
+
+    & > .inner {
+        position: absolute;
+
+        top: $page_margins;
+        left: $page_margins;
+
+        width:   $page_width - $page_margins * 2;
+        height: $page_height - $page_margins * 2 ;
+
+    }
+}
+
+/* Show page lines on debug*/
+@if $debug {
+
+    .page {
+        border: dotted 0.5px rgb(192, 224, 118);
+
+        & > .inner {
+            border: dotted 0.5px rgb(214, 132, 132);
+        }
+    }
+  
+}

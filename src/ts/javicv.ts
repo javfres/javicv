@@ -1,5 +1,6 @@
+
 //
-// All imports
+// Imports
 //
 import CV2 from './cv2';
 
@@ -14,7 +15,7 @@ export default class JaviCV extends CV2 {
     /**
      * Generate both html and pdf
      */
-    findJob(company:string = '', debug=false): Promise<void> {
+    findJob(company:string|null = null, debug=false): Promise<void> {
 
         // Optional name of the company
         const futureCompany = company ? (company+'??') : '???';

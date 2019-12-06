@@ -13,8 +13,7 @@
                 <div class="desc">{{ item.desc }}</div>
                 <div class="icon">   
                     <span class="svg-primary">
-                        <img src="icons/{{item.icon}}.svg">
-                        {{  item.icon }}
+                        {{ inlineSVG('icons/' + item.icon +'.svg') | safe }}
                     </span>
                 </div>
             </div>
@@ -30,7 +29,7 @@
 
             <div class="block triangle">
                 <div>
-                    <img src="icons/triangle.svg">
+                    {{ inlineSVG('icons/triangle.svg') | safe }}
                 </div>
             </div>
 
@@ -38,7 +37,7 @@
         </div>
     
         <div class="arrow">
-            <img src="icons/arrow.svg">
+            {{ inlineSVG('icons/arrow.svg') | safe }}
         </div>
     
         <div class="box side"></div>
@@ -52,7 +51,7 @@
         <div class="box side"></div>
 
         <div class="arrow">
-            <img src="icons/arrow.svg">
+            {{ inlineSVG('icons/arrow.svg') | safe }}
         </div>
 
     </div>

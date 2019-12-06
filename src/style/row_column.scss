@@ -1,0 +1,50 @@
+
+/*
+ * Row and column layout
+ */
+
+$inner_width: $page_width - $page_margins * 2;
+$column_width: floor( ($inner_width - $column_sep * 2) / 3 );
+
+.row {
+
+    .column {
+
+        width: $column_width;
+        margin-left: $column_sep;
+        display: inline-block;
+        vertical-align:top;
+        position: relative;
+
+        &.x2 {
+            width: $column_width * 2 + $column_sep;
+        }
+
+        &.x3 {
+            width: $column_width * 3 + $column_sep * 2;
+        }
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+    }
+
+    .divisor {
+        display: inline-block;
+        vertical-align:top;
+        position: relative;
+    
+        margin-left:  floor($column_sep / 2) - 5px;
+        margin-right:  floor($column_sep / 2) - 5px;
+        min-height: 10px;
+    
+        border-left: 2px dotted $grey_color;
+
+        & + .column {
+            margin-left: 0;
+        }
+
+    }
+
+}

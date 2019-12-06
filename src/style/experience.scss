@@ -1,0 +1,85 @@
+/**
+ * Work experience
+ */
+
+.job {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 25px;
+
+    .logo {
+        width: 60px;
+        padding: 8px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border: 1px solid $grey_color;
+    }
+
+    .text {
+        margin-left: 100px;
+        text-align: justify;
+
+        .jheader {
+            height: 20px;
+            position: relative;
+    
+            color: $grey_color;
+    
+            border-bottom: 1px solid $grey_color;
+            margin-bottom: 5px;
+
+            .years {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .place {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+        }
+
+        .title {
+            position: relative;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 12px;
+
+            .position {
+                font-family: $font_monospace;
+                font-size: 14px;
+            }
+
+            .tags {
+                position: absolute;
+                top: 0;
+                right: 0;
+
+                .tag {
+                    color: white;
+                    background-color: $grey_color;
+                
+                    font-family: $font_monospace;
+                    font-size: 8px;
+                    padding: 2px;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                
+                    border-radius: 3px;
+                
+                    opacity: 0.8;
+                }
+                
+            }
+
+        }
+
+    }
+
+
+}
+

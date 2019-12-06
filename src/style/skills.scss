@@ -1,0 +1,38 @@
+
+
+
+/**
+ * Skills
+ */
+
+.skills > .tags {
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    .tag {
+        color: white;
+     
+        background-color: rgb(158,189,243);
+        background-color: $grey_color;
+        opacity: 0.8;
+     
+        font-family: $font_monospace;
+        font-size: 10px;
+     
+        padding: 3px;
+        padding-left: 10px;
+        padding-right: 10px;
+     
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+     
+        border-radius: 4px;
+     
+        display: inline-block;
+    }
+     
+
+}
+

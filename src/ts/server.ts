@@ -4,11 +4,15 @@ import express, {Application} from 'express';
 import nunjucks from 'nunjucks';
 import sass from 'sass';
 import { CVError } from './types';
+import inlineSVG from './inlineSVG';
 
 
-
+/**
+ * This is an express server to handle all the resources needed to render the pdf
+ */
 export default class Server {
 
+    // Default debug port
     public static readonly DEV_PORT = 4444;
 
     //
@@ -19,13 +23,22 @@ export default class Server {
     data: any = null;
     port: number = 0;
 
+    /**
+     * Start a express server
+     * @param debug If true, sets a given port instead a random one
+     */
     async start(debug=false){
 
+        // Init the template library
         nunjucks.configure('src/templates/', { autoescape: true, noCache:true });
 
+        //
+        // Create the server
+        //
         this.app = express();
 
         if(debug){
+            console.log(`http://localhost:${Server.DEV_PORT}`);
             this.server = await this.app.listen(Server.DEV_PORT);
         } else {
             this.server = await this.app.listen();
@@ -33,6 +46,9 @@ export default class Server {
 
         this.init_routes();
 
+        //
+        // Get the used port
+        //
         const addr = this.server.address();
         if(addr && typeof addr !== 'string'){
             this.port = addr.port;
@@ -40,41 +56,52 @@ export default class Server {
             throw new CVError("Unable to launch server");
         }
 
+    } // start
 
-    }
 
-
+    /**
+     * Stop the server
+     */
     async stop(){
 
         if(this.server) await this.server.close();
 
     }
 
+    /**
+     * Set the data used in the template library
+     * @param data 
+     */
     setData(data:any){
         this.data = data;
     }
 
-
+    /**
+     * Define the routes
+     */
     init_routes(){
 
+        // Check the app is running
         if(!this.app){
             throw new CVError("No express app");
         };
 
+        // Default route
         this.app.get('/', (req, res) => {
-
-            console.log("jajaj");
 
             if(!this.data){
                 res.send("No data");
                 return;
             }
 
-            const html = nunjucks.render('index.njk', this.data);
+            const html = nunjucks.render('index.njk', {
+                ...this.data,
+                inlineSVG
+            });
             res.send(html);
         });
 
-        
+        // The style
         this.app.get('/style.css', (req, res) => {
 
             res.setHeader('Content-Type', 'text/css');
@@ -94,11 +121,9 @@ export default class Server {
 
         });
 
-        this.app.use('/icons', express.static('src/icons'));
+        // Static imgs route
         this.app.use('/imgs', express.static('src/imgs'));
 
-    }
-
-
+    } // init_routes
 
 } 

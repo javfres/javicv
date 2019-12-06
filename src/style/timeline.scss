@@ -1,0 +1,150 @@
+
+
+
+//
+// The timeline
+//
+
+$timeline_margin: 10px;
+$timeline_arrow_width: 20px;
+
+
+.timeline {
+    
+    .row {
+
+        width: $inner_width - $timeline_margin * 2 ;
+        margin-left: $timeline_margin;
+        margin-right: $timeline_margin;
+
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+
+        .block {
+            flex: 1; 
+            text-align: center; 
+
+            .title {
+                font-weight: bold;
+                color: $primary_color;
+                min-height: 20px;
+            }
+
+            .desc {
+                color: $grey_color;
+                margin-top: 4px;
+                margin-bottom: 10px;
+            }
+
+            .icon img svg {
+                height: 30px;
+            }
+
+            .year {
+                font-family: $font_monospace;
+                color: $grey_color;
+                margin-top: 12px;
+                margin-bottom: 10px;
+            }
+            
+        }
+
+    }
+}
+
+
+
+
+/**
+ * The color boxes
+ */
+
+$gradient_1: #a3ed9f;
+$gradient_2: #9ebdf3;
+
+.timeline > .line {
+
+    position: relative;
+
+    .row {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        .triangle {
+            height: 10px;
+
+            div {
+                display: block;
+                margin: auto;
+                width: 10px;
+                height: 10px;
+                position: relative;
+        
+                svg {
+                    top: -2px;
+                    left: 0;
+                    position: absolute;
+                    display: block;
+                    width: 10px;
+                    height: 10px;
+
+                    path {
+                        fill: #ffffff !important; 
+                    }
+
+                }
+            }
+
+        }
+
+    }
+
+    margin-top: 2px;
+    height: 10px;
+
+    display: flex;
+
+
+    .arrow {
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 10px;
+        height: 10px;
+        text-align: center;
+        display: inline-block;
+    
+        svg {
+            width: 10px;
+            height: 10px;
+            display: block;
+
+        }
+
+        svg path {
+            fill: $gradient_1 !important;
+        }
+        &:last-of-type svg path {
+            fill: $gradient_2 !important;
+        }
+    
+    }
+
+
+    .side {
+        width: 5px;
+    }
+
+    .main {
+        background-color: blue;
+        width: $inner_width - (20px * 2) - (5px * 2)  ;
+        height: 10px;
+        display: inline-block; 
+        border-radius: 5px;
+
+        background: linear-gradient(to right, $gradient_1 0%, $gradient_2 100%);
+
+    }
+
+}
