@@ -58,6 +58,8 @@ npm run cv "Company name"
     * [X] Put this into a Docker
     * [X] Some scss would be nice
     * [X] Reduce pdf size with ghostscript
+    * [X] Use express to handle the resources
+    * [X] Split scss code
 * New version uses:
     * Typescript
     * SCSS
