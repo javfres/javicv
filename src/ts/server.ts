@@ -18,9 +18,9 @@ export default class Server {
     //
     // Attributes
     //
-    app: Application|null = null;
-    server:http.Server|null = null;
-    data: any = null;
+    private app: Application|null = null;
+    private server:http.Server|null = null;
+    private data: any = null;
     port: number = 0;
 
     /**
@@ -30,7 +30,14 @@ export default class Server {
     async start(debug=false){
 
         // Init the template library
-        nunjucks.configure( __dirname + '/../../src/templates/', { autoescape: true, noCache:true });
+        const env = nunjucks.configure( __dirname + '/../../src/templates/', {
+            autoescape: true,
+            noCache: true,
+        });
+
+        env.addFilter('is_string', function(obj) {
+            return typeof obj == 'string';
+        });
 
         //
         // Create the server
@@ -39,9 +46,9 @@ export default class Server {
 
         if(debug){
             console.log(`http://localhost:${Server.DEV_PORT}`);
-            this.server = await this.app.listen(Server.DEV_PORT);
+            this.server = this.app.listen(Server.DEV_PORT);
         } else {
-            this.server = await this.app.listen();
+            this.server = this.app.listen();
         }
 
         this.init_routes();
@@ -58,13 +65,18 @@ export default class Server {
 
     } // start
 
-
     /**
      * Stop the server
      */
     async stop(){
 
-        if(this.server) await this.server.close();
+        if(!this.server){
+            return;
+        }
+
+        await new Promise((resolve) => {
+            this.server!.close(resolve);
+        });
 
     }
 
@@ -72,7 +84,7 @@ export default class Server {
      * Set the data used in the template library
      * @param data 
      */
-    setData(data:any){
+    setData(data: any){
         this.data = data;
     }
 

@@ -1,155 +1,33 @@
 
 <h2>Work experience</h2>
 
+{% for job in work_experience %}
 
 <div class="job">
-    <img class="logo" src="imgs/logo_bm.jpg">
-
+    <img class="logo" src="imgs/{{ job.logo }}">
     <div class="text">
 
         <div class="jheader">
-            <div class="years">2016-present</div>    
-            <div class="place">Valladolid, Spain; SF, California</div>    
+            <div class="years">{{ job.years }}</div>    
+            <div class="place">{{ job.place }}</div>    
         </div>
 
         <div class="title">
-            <span class="position">Full-stack developer</span>
-            @ Biome Makers
-        </div>
-
-        <div class="content">
-
-            <p>
-                Biome Makers is a biotech <!--startup--> company
-                that uses DNA sequencing to analyze
-                the microbiome in agricultural processes.
-
-                I was part of the core team that managed to
-                reach <span title="Not an easy task :)">Series A</span>.
-
-
-                <!--The company is based in California and Spain.-->
-            </p>
-
-            <p>
-            
-                My main task is to develop the client results portal
-                and all the related components, such as
-                online shop, notifications, rest api...
-
-                Our core stack includes PHP Laravel, Vue.js,
-                and PostgreSQL, all running over AWS instances.
-
-            </p>
-
-            <p>
-
-                Moreover, I work close with the bioinformatic team
-                to integrate Python programs in our data analysis pipeline.
-
-                <!--
-                I use Python to integrate bioinformatic programs
-                into our data analysis pipeline 
-                and store the results into PostgreSQL.
-                -->
-
-            </p>
-
-            <!--
-            <ul>
-                <li>PDF and Excel report generation</li>
-                <li>API Rest for the mobile app</li>
-                <li>Stripe payment gateway</li>
-            </ul>
-            -->
-
-        </div>
-    
-    </div>
-</div>
-
-<div class="job">
-    <img class="logo" src="imgs/logo_infor.png">
-    <div class="text">
-
-        <div class="jheader">
-            <div class="years">2012–2015</div>    
-            <div class="place">Valladolid, Spain</div>    
-        </div>
-
-        <div class="title">
-            <span class="position">PhD Studentship</span>
-            @ University of Valladolid
+            <span class="position">{{ job.position }}</span>
+            @ {{ job.company }}
 
             <div class="tags">
+                {% for tag in job.tags %}
+                    <div class="tag">{{ tag }}</div>
+                {% endfor %}
             </div>
         </div>
 
         <div class="content">
-
-            <p>
-
-                As a Doctor of Computer Science,
-                my research topic was about
-                High Performance Computing.
-
-                I have multiple published papers in
-                national and international journals and conferences.
-
-            </p>
-
-            <p>
-                I have worked developing a C/C++
-                library to improve the performance of
-                software for supercomputers. 
-
-                Moreover, I was a teacher for three years 
-                in the computer science degree.
-
-            </p>
+            {{ job.content | safe }}
         </div>
-    
 
     </div>
 </div>
 
-
-
-
-
-<div class="job">
-    <img class="logo" src="imgs/logo_af.png">
-    <div class="text">
-
-        <div class="jheader">
-            <div class="years">2010–2016</div>    
-            <div class="place">Valladolid, Spain</div>    
-        </div>
-
-        <div class="title">
-            <span class="position">Software developer</span>
-            @ Alcañiz Fresno's
-
-            <div class="tags">
-                <div class="tag">part-time</div>
-            </div>
-        </div>
-
-        <div class="content">
-
-            <p>
-                Editorial and printing company.
-
-                I have worked developing software
-                to automatize the creation of digital documents
-                (epub, pdf, html, xml) using Adobe Indesign Extented Script
-                (Javascript).
-            </p>
-        </div>
-    
-
-    </div>
-</div>
-
-
-
+{% endfor %}

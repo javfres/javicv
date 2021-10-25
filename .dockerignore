@@ -1,0 +1,7 @@
+.git
+node_modules/
+run_in_docker.sh
+doc
+cv.pdf
+Dockerfile
+Readme.md

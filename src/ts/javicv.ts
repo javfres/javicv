@@ -3,6 +3,7 @@
 // Imports
 //
 import CV2 from './cv2';
+import fs from 'fs';
 
 
 /**
@@ -15,71 +16,44 @@ export default class JaviCV extends CV2 {
     /**
      * Generate both html and pdf
      */
-    findJob(company:string|null = null, year:number|null = null, debug=false): Promise<void> {
-
-        // Optional name of the company
-        const futureCompany = company ? (company+'??') : '???';
-
-        // Big object with the data
-        const data = {
-            timeline: [
-                {
-                    title: "Computer Science",
-                    desc: "BSc Degree",
-                    icon: "uni1",
-                    year: "2010"
-                },
-                {
-                    title: "Infor. & Comm.",
-                    desc: "MSc Degree",
-                    icon: "uni2",
-                    year: "2012"
-                },
-                {
-                    title: "Parallel Computing",
-                    desc: "PhD Degree",
-                    icon: "phd",
-                    year: "2015"
-                },
-                {
-                    title: "Full-stack developer",
-                    desc: "Biome Makers",
-                    icon: "work",
-                    year: "2016-present"
-                },
-            ],
-        };
-
-        // Extra future job
-        data.timeline.push({
-            title: "",
-            desc: futureCompany,
-            icon: "chair",
-            year: "" + ( year || new Date().getFullYear())
-        });
+    async findJob(company: string|null, year: number, debug=false) {
 
 
-        // PDF metadata
-        const pdf_metadata = {
-            'Subject': 'Resume',
-            'Title': 'CV Javier Fresno',
-            'Author': 'Javier Fresno',
-            'Keywords+': [ 'Software engineer', 'PhD Computer Science', 'Full stack' ],
-            'Creator': 'Javi Node.js+TSC+SASS+HTML',
-        };
+        const strData = fs.readFileSync('./src/data.ts', 'utf8');
+        let data:any = {timeline: []};
 
-
-        if(debug){
-            return this.debug(data);
+        try {
+            data = eval(strData);
+        } catch(e){
+            console.error("Invalid Data");
         }
 
-        return this.render(data, JaviCV.PDF_OUT, pdf_metadata);
+
+        // Optional name of the company
+        if(company !== null) {
+
+            const futureCompany = company ? (company+'??') : '???';
+
+            // Extra future job
+            data.timeline.push({
+                title: "",
+                desc: futureCompany,
+                icon: "chair",
+                year: "" + year
+            });
+        }
+
+        if(debug){
+            await this.debug(data);
+        }
+
+        await this.render(data, JaviCV.PDF_OUT, data.pdf_metadata);
     }
 
     /**
      * Just console.log
      */
-    say(msg:string){
+    say(msg: string): void {
         console.log(`🗨️  ${msg}`);
     }
 

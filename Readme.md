@@ -6,21 +6,9 @@
 
 My CV, this is as simple as:
 
-```
-const JaviCV = require('@javfres/javicv').default;
-const dreamJobCo = 'Your company';
-
-const javi = new JaviCV();
-javi.findJob(dreamJobCo).then(() => {
-    javi.say('Hurray!!');
-});
 
 ```
-
-or if you prefer async functions over promises:
-
-```
-const JaviCV = require('@javfres/javicv').default;
+import JaviCV from '@javfres/javicv';
 const dreamJobCo = 'Your company';
 
 (async () => {
@@ -37,14 +25,14 @@ const dreamJobCo = 'Your company';
 ## Usage
 
 ```
-npm install
+npm ci
 npm run cv
 ```
 
 or
 
 ```
-npm install
+npm ci
 npm run cv "Company name"
 ```
 
@@ -66,36 +54,27 @@ npm run cv "Company name"
 * New version stops using:
     * pdf-puppeteer. Now I am calling puppeteer manually.
 * NPM scripts:
-    * `npm run tsc`: Runs typescript and generates the plain JS files
-    * `npm run tsc-watch`: Runs typescript in watch mode
     * `npm run cv`: Calls the script to generate the pdf
-    * `npm run dev`: Runs concurrently typescript and the debug server
-    * `npm run dev-server`: Just runs the express server in debug mode on port 4444
+    * `npm run dev`: Runs the debug server
 
 ### Docker
 
 I dockerized this node project just for fun.
 These are the instructions to create the image from the Dockerfile
 and to run that image to generate the pdf.
-The docker version does not contains gs so the *reduce pdf size* stage
-will show a warning although the final pdf is generated.
-
-Create the image
-
-```
-docker build -t javfres/cv .
-```
+The docker version does now contain `gs` so the *reduce pdf size* stage
+will work.
 
 Render the pdf
 
 ```
-touch ./cv.pdf \
-&& docker run --rm -v${PWD}/cv.pdf:/cv/cv.pdf javfres/cv npm run cv
+./run_in_docker.sh
 ```
 
 Interactive for debug
 
 ```
+docker build -t javfres/cv .
 docker run --rm -it javfres/cv /bin/bash
 ```
 

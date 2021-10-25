@@ -1,5 +1,3 @@
-
-
 <div class="header">
 
     <!-- My photo -->
@@ -7,54 +5,33 @@
 
     <div class="text">
 
-        <h1>Javier Fresno</h1>
+        <h1>{{ fullname }}</h1>
 
         <div class="titles">
-
-            <p>Software Engineer</p>
-
-            <p>Fullstack Developer</p>
-
-            <!-- Maybe not very professional
-            <p>Startup Survivor</p>
-            -->
+            {% for t in titles %}
+                <p>{{ t }}</p>
+            {% endfor %}
         </div>
 
     </div>
 
     <!-- Contact links -->
     <div class="links">
-        <div class="link">
-            <a href="mailto:javfres@gmail.com">
-                <span class="svg-primary">
-                    {{ inlineSVG('icons/mail.svg') | safe }}
-                </span>
-                javfres@gmail.com
-            </a>
-        </div>      
 
+        {% for link in title_links %}
+            
+            <div class="link">
+                <a href="{{ link.href }}">
+                    <span class="svg-primary">
+                        {{ inlineSVG('icons/' + link.icon + '.svg') | safe }}
+                    </span>
+                    {{ link.text }}
+                </a>
+            </div>   
 
-        <div class="link">
+        {% endfor %}
 
-            <a href="https://linkedin.com/in/jfresno/">
-                <span class="svg-primary">
-                    {{ inlineSVG('icons/linkedin.svg') | safe }}
-                </span>
-                linkedin.com/in/jfresno
-            </a>
-        </div>
-
-
-        <div class="link">
-            <a href="https://github.com/javfres">
-                <span class="svg-primary">
-                    {{ inlineSVG('icons/github.svg') | safe }}
-                </span>
-                github.com/javfres
-            </a>
-        </div>
-    
     </div> <!-- links -->
-    
-</div>   
+
+</div>
 
