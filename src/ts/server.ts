@@ -39,9 +39,9 @@ export default class Server {
 
         if(debug){
             console.log(`http://localhost:${Server.DEV_PORT}`);
-            this.server = await this.app.listen(Server.DEV_PORT);
+            this.server = this.app.listen(Server.DEV_PORT);
         } else {
-            this.server = await this.app.listen();
+            this.server = this.app.listen();
         }
 
         this.init_routes();
@@ -64,7 +64,7 @@ export default class Server {
      */
     async stop(){
 
-        if(this.server) await this.server.close();
+        if(this.server) this.server.close();
 
     }
 
@@ -111,6 +111,10 @@ export default class Server {
                 if(err){
                     console.error(err);
                     res.send(err);
+                    return;
+                }
+
+                if (!sass_res) {
                     return;
                 }
 

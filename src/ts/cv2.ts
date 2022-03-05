@@ -15,8 +15,7 @@ import { CVError } from "./types";
 export default class CV2 {
 
     // Server
-    server:CVServer = new CVServer();
-
+    server = new CVServer();
 
     /**
      * Render
