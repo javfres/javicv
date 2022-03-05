@@ -3,8 +3,10 @@
  * Row and column layout
  */
 
+@use 'sass:math';
+
 $inner_width: $page_width - $page_margins * 2;
-$column_width: floor( ($inner_width - $column_sep * 2) / 3 );
+$column_width: floor( math.div($inner_width - $column_sep * 2, 3) );
 
 .row {
 
@@ -35,8 +37,8 @@ $column_width: floor( ($inner_width - $column_sep * 2) / 3 );
         vertical-align:top;
         position: relative;
     
-        margin-left:  floor($column_sep / 2) - 5px;
-        margin-right:  floor($column_sep / 2) - 5px;
+        margin-left:  floor($column_sep * 0.5) - 5px;
+        margin-right:  floor($column_sep * 0.5) - 5px;
         min-height: 10px;
     
         border-left: 2px dotted $grey_color;
