@@ -2,11 +2,9 @@
     "name": "@javfres/javicv",
     "version": "3.0.0",
     "description": "My CV",
-    "main": "build/index.js",
     "scripts": {
         "cv": "ts-node src/cmd.ts",
-        "dev": "concurrently -k -n \"TS,CV\" -c \"yellow.bold,cyan.bold\" \"npm run tsc-watch\" \"npm run dev-server\"",
-        "dev-server": "nodemon --delay 2 --ext js,tsbuildinfo --watch build --exec \"node build/cmd.js --debug\"",
+        "dev": "nodemon --delay 2 --ext ts --exec \"ts-node src/cmd.ts --debug\"",
         "lint": "eslint . --ext .ts"
     },
     "keywords": [
@@ -32,6 +30,7 @@
         "@types/nunjucks": "^3.2.1",
         "@types/puppeteer": "^13.4.1",
         "@types/sass": "^1.43.1",
+        "@types/shelljs": "^0.8.11",
         "@types/yargs": "^17.0.9",
         "@typescript-eslint/eslint-plugin": "^5.13.0",
         "@typescript-eslint/parser": "^5.13.0",

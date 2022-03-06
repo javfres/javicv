@@ -23,7 +23,7 @@ export default class CV2 {
      * @param path Pdf path file
      * @param metadata Pdf metadata
      */
-    async render(data:any, path:string, metadata:any={}){
+    async render(data:any, path:string, metadata:Record<string, string|string[]>={}){
 
         // Set the sigint handler
         this.sigintHandler();

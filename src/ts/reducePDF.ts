@@ -1,16 +1,17 @@
 //
 // Includes (they do not have @types/ modules)
 //
-// @ts-ignore
 import shelljs from 'shelljs';
 import fs from 'fs';
+
+type QualityT = 'screen' | 'ebook' | 'printer' | 'prepress' | 'default';
 
 /**
  * Reduces the pdf size using the gs command
  * @param pdf_file The pdf path
  * @param quality The ghostscript quality param: (screen, ebook, printer, prepress or default)
  */
-export default async function(pdf_file:string, quality:string='default'){
+export default async function(pdf_file:string, quality: QualityT = 'default'){
 
     const tmpPDF = '/tmp/tmp-cv.pdf';
 
@@ -28,6 +29,4 @@ export default async function(pdf_file:string, quality:string='default'){
 
     // If works, replace the original file
     await new Promise(resolve => fs.rename(tmpPDF, pdf_file, resolve));
-
 }
-

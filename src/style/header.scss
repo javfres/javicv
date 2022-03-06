@@ -3,11 +3,14 @@
  * Header
  */
 
+
+$headerH: 130px;
+
 .header {
 
     position: relative;
     width: 100%;
-    height: 160px;
+    height: $headerH;
 
     & > img.me {
 
@@ -15,8 +18,8 @@
         top: 0;
         left: 0;
 
-        width: 160px;
-        height: 160px;
+        width: $headerH;
+        height: $headerH;
 
         filter: grayscale(70%); 
     }
@@ -25,10 +28,10 @@
 
         position: absolute;
         top: 0;
-        left: 170px;
+        left: $headerH + 12px;
 
-        width: 200px;
-        height: 160px;
+        width: 300px;
+        height: $headerH;
  
         // My name
         & > h1 {
