@@ -1,5 +1,18 @@
 
 
+import nunjucks from 'nunjucks';
+
+type strT = string | nunjucks.runtime.SafeString;
+
+export function html(strings:TemplateStringsArray) {
+    return new nunjucks.runtime.SafeString(strings.join(' ').trim());
+};
+
+type SkillT = {
+    text: string;
+    title?: string;
+}
+
 export type ResumeT = {
 
     name: string;
@@ -17,6 +30,22 @@ export type ResumeT = {
         desc: string;
         icon: string;
         year: string;
+    }[];
+
+    about: strT;
+    skills: (SkillT|string)[];
+    experience: {
+        company: string;
+        start: number|string;
+        end?: number|string;
+        place: string;
+        logo: string;
+        description?: strT;
+        positions: {
+            title: string;
+            tags?: string[];
+            description: strT;
+        }[]; 
     }[];
 
     pdfMetadata: Record<string, string|string[]>;

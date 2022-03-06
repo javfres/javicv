@@ -29,7 +29,14 @@ export default class Server {
     async start(debug=false) {
 
         // Init the template library
-        nunjucks.configure( __dirname + '/../../src/templates/', { autoescape: true, noCache:true });
+        const env = nunjucks.configure( __dirname + '/../../src/templates/', {
+            autoescape: true,
+            noCache:true
+        });
+
+        env.addFilter('is_string', function(obj) {
+            return typeof obj == 'string';
+        });
 
         //
         // Create the server
