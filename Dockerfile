@@ -1,5 +1,5 @@
 
-FROM node:10
+FROM node:16
 
 # I took this from buildkite/puppeteer
 # but I removed things I do not use

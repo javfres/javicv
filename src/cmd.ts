@@ -6,9 +6,14 @@ import JaviCV from './index';
 import yargs from 'yargs';
 
 //
-// Read command arguments
+// Build the CV
 //
-const argv = yargs
+(async () => {
+
+    //
+    // Read command arguments
+    //
+    const argv = await yargs
     .usage('Usage: $0 [options] <dream-job-company>')
     .option('debug', {
         alias: 'd',
@@ -26,13 +31,8 @@ const argv = yargs
     .alias('h', 'help')
     .argv;
 
-// Get company name from argv
-const dreamJobCo = argv._.join(' ') || null;
-
-//
-// Build the CV
-//
-(async () => {
+    // Get company name from argv
+    const dreamJobCo = argv._.join(' ') || null;
 
     const javi = new JaviCV();
 

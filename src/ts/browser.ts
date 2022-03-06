@@ -28,6 +28,5 @@ export default class Browser {
 
         await browser.close();
 
-    } // render_pdf
-
+    }
 }

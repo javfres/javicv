@@ -7,20 +7,6 @@
 My CV, this is as simple as:
 
 ```
-const JaviCV = require('@javfres/javicv').default;
-const dreamJobCo = 'Your company';
-
-const javi = new JaviCV();
-javi.findJob(dreamJobCo).then(() => {
-    javi.say('Hurray!!');
-});
-
-```
-
-or if you prefer async functions over promises:
-
-```
-const JaviCV = require('@javfres/javicv').default;
 const dreamJobCo = 'Your company';
 
 (async () => {
@@ -38,16 +24,8 @@ const dreamJobCo = 'Your company';
 
 ```
 npm install
-npm run cv
-```
-
-or
-
-```
-npm install
 npm run cv "Company name"
 ```
-
 
 
 ## Notes for myself
@@ -60,17 +38,16 @@ npm run cv "Company name"
     * [X] Reduce pdf size with ghostscript
     * [X] Use express to handle the resources
     * [X] Split scss code
+    * [ ] Lint for html and scss
+    * [ ] Read data from json file
 * New version uses:
     * Typescript
     * SCSS
 * New version stops using:
     * pdf-puppeteer. Now I am calling puppeteer manually.
 * NPM scripts:
-    * `npm run tsc`: Runs typescript and generates the plain JS files
-    * `npm run tsc-watch`: Runs typescript in watch mode
     * `npm run cv`: Calls the script to generate the pdf
-    * `npm run dev`: Runs concurrently typescript and the debug server
-    * `npm run dev-server`: Just runs the express server in debug mode on port 4444
+    * `npm run dev`: Runs the debug server
 
 ### Docker
 

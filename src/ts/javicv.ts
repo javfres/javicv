@@ -1,9 +1,7 @@
-
 //
 // Imports
 //
 import CV2 from './cv2';
-
 
 /**
  * My CV class
@@ -42,10 +40,16 @@ export default class JaviCV extends CV2 {
                     year: "2015"
                 },
                 {
-                    title: "Full-stack developer",
+                    title: "Software Engineer",
                     desc: "Biome Makers",
                     icon: "work",
-                    year: "2016-present"
+                    year: "2016-2021"
+                },
+                {
+                    title: "Sr. Software Engineer",
+                    desc: "Biome Makers",
+                    icon: "work",
+                    year: "2021-present"
                 },
             ],
         };
@@ -58,7 +62,6 @@ export default class JaviCV extends CV2 {
             year: "" + ( year || new Date().getFullYear())
         });
 
-
         // PDF metadata
         const pdf_metadata = {
             'Subject': 'Resume',
@@ -68,8 +71,7 @@ export default class JaviCV extends CV2 {
             'Creator': 'Javi Node.js+TSC+SASS+HTML',
         };
 
-
-        if(debug){
+        if (debug) {
             return this.debug(data);
         }
 
@@ -79,9 +81,7 @@ export default class JaviCV extends CV2 {
     /**
      * Just console.log
      */
-    say(msg:string){
+    say(msg:string) {
         console.log(`🗨️  ${msg}`);
     }
-
-
-} // JaviCV class
+}
