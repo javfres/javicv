@@ -40,6 +40,7 @@ npm run cv "Company name"
     * [X] Split scss code
     * [ ] Lint for html and scss
     * [ ] Read data from json file
+    * [ ] Auto-update express dev server
 * New version uses:
     * Typescript
     * SCSS

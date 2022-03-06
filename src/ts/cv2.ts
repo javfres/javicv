@@ -6,7 +6,8 @@ import CVServer  from "./server";
 import Browser from "./browser";
 import reducePDF from "./reducePDF";
 import setPDFMetadata from "./metadata";
-import { CVError } from "./types";
+import { CVError } from "./cverror";
+import { ResumeT } from "./ResumeT";
 
 
 /**
@@ -23,7 +24,7 @@ export default class CV2 {
      * @param path Pdf path file
      * @param metadata Pdf metadata
      */
-    async render(data:any, path:string, metadata:Record<string, string|string[]>={}){
+    async render(data:ResumeT, path:string, metadata:Record<string, string|string[]>={}){
 
         // Set the sigint handler
         this.sigintHandler();

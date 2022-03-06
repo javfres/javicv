@@ -1,6 +1,7 @@
 //
 // Imports
 //
+import resume from '../resume/resume';
 import CV2 from './cv2';
 
 /**
@@ -19,40 +20,7 @@ export default class JaviCV extends CV2 {
         const futureCompany = company ? (company+'??') : '???';
 
         // Big object with the data
-        const data = {
-            timeline: [
-                {
-                    title: "Computer Science",
-                    desc: "BSc Degree",
-                    icon: "uni1",
-                    year: "2010"
-                },
-                {
-                    title: "Infor. & Comm.",
-                    desc: "MSc Degree",
-                    icon: "uni2",
-                    year: "2012"
-                },
-                {
-                    title: "Parallel Computing",
-                    desc: "PhD Degree",
-                    icon: "phd",
-                    year: "2015"
-                },
-                {
-                    title: "Software Engineer",
-                    desc: "Biome Makers",
-                    icon: "work",
-                    year: "2016-2021"
-                },
-                {
-                    title: "Sr. Software Engineer",
-                    desc: "Biome Makers",
-                    icon: "work",
-                    year: "2021-present"
-                },
-            ],
-        };
+        const data = resume;
 
         // Extra future job
         data.timeline.push({
@@ -62,20 +30,12 @@ export default class JaviCV extends CV2 {
             year: "" + ( year || new Date().getFullYear())
         });
 
-        // PDF metadata
-        const pdf_metadata = {
-            'Subject': 'Resume',
-            'Title': 'CV Javier Fresno',
-            'Author': 'Javier Fresno',
-            'Keywords+': [ 'Software engineer', 'PhD Computer Science', 'Full stack' ],
-            'Creator': 'Javi Node.js+TSC+SASS+HTML',
-        };
 
         if (debug) {
             return this.debug(data);
         }
 
-        return this.render(data, JaviCV.PDF_OUT, pdf_metadata);
+        return this.render(data, JaviCV.PDF_OUT, resume.pdfMetadata);
     }
 
     /**

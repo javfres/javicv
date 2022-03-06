@@ -3,7 +3,7 @@ import http from 'http';
 import express, {Application} from 'express';
 import nunjucks from 'nunjucks';
 import sass from 'sass';
-import { CVError } from './types';
+import { CVError } from './cverror';
 import inlineSVG from './inlineSVG';
 
 /**
