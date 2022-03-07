@@ -3,7 +3,6 @@
 
 ![My CV photo](/doc/photo_screen_cv.jpg)
 
-
 My CV, this is as simple as:
 
 ```
@@ -19,14 +18,12 @@ const dreamJobCo = 'Your company';
 
 ```
 
-
 ## Usage
 
 ```
 npm install
 npm run cv "Company name"
 ```
-
 
 ## Notes for myself
 
@@ -55,8 +52,6 @@ npm run cv "Company name"
 I dockerized this node project just for fun.
 These are the instructions to create the image from the Dockerfile
 and to run that image to generate the pdf.
-The docker version does not contains gs so the *reduce pdf size* stage
-will show a warning although the final pdf is generated.
 
 Create the image
 
@@ -76,4 +71,3 @@ Interactive for debug
 ```
 docker run --rm -it javfres/cv /bin/bash
 ```
-
