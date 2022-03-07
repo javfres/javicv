@@ -1,159 +1,47 @@
 
 <h2>Work experience</h2>
 
+{% for job in experience %}
 
-<div class="job">
-    <img class="logo" src="imgs/logo_bm.jpg">
+    <div class="job">
+        <img class="logo" src="imgs/{{ job.logo }}">
 
-    <div class="text">
+        <div class="text">
 
-        <div class="jheader">
-            <div class="years">2016-present</div>    
-            <div class="place">Valladolid, Spain; SF, California</div>    
-        </div>
-
-    <div class="content">
-
-            <p>
-                Biome Makers is a biotech <!--startup--> company
-                that uses DNA sequencing to analyze
-                the microbiome in agricultural processes.
-
-                I was part of the core team that managed to
-                reach <span title="Not an easy task :)">Series A &amp; B</span>.
-
-            </p>
-
-        </div>
-
-
-        <div class="title">
-            <span class="position">Senior Software Engineer</span>
-            @ Biome Makers
-        </div>
-
-          <div class="content">
-
-        
-            <p>
-
-                As a senior developer,
-                my responsibilities are to collaborate with the rest of the departments
-                to design the new projects, mentor more junior staff,
-                and ensure software is up-to-date with the latest technologies.
-
-            </p>
-
-  
-
-        </div>
-
-        <div class="title">
-            <span class="position">Software Engineer</span>
-            @ Biome Makers
-        </div>
-
-        <div class="content">
-
-            <p>
-            
-                I have been working in many of the company projects such as:
-                the client online portal,
-                our custom LIMS system,
-                the API Rest for laboratory licensing,
-                and many third-party integrations (Stripe, HubSpot, NetSuite).
-
-                Our core stack includes PHP Laravel, Vue.js,
-                and PostgreSQL, all running over AWS instances.
-            </p>
-
-        </div>
-    
-    </div>
-</div>
-
-<div class="job">
-    <img class="logo" src="imgs/logo_infor.png">
-    <div class="text">
-
-        <div class="jheader">
-            <div class="years">2012-2015</div>    
-            <div class="place">Valladolid, Spain</div>    
-        </div>
-
-        <div class="title">
-            <span class="position">PhD Studentship</span>
-            @ University of Valladolid
-
-            <div class="tags">
+            <div class="jheader">
+                <div class="years">{{ job.start }}-{{ job.end if job.end else 'present' }}</div>
+                <div class="place">{{ job.place }}</div>
             </div>
-        </div>
-
-        <div class="content">
-
-            <p>
-
-                As a Doctor of Computer Science,
-                my research topic was about
-                High Performance Computing.
-
-                I have multiple published papers in
-                national and international journals and conferences.
-
-            </p>
-
-            <p>
-                I have worked developing a C/C++
-                library to improve the performance of
-                software for supercomputers. 
-
-                Moreover, I was a teacher for three years 
-                in the computer science degree.
-
-            </p>
-        </div>
-    
-
-    </div>
-</div>
 
 
+            <div class="content">
 
+                {% if job.description %}
+                    {{ job.description }}
+                {% endif %}
 
+                {% for position in job.positions %}
 
-<div class="job">
-    <img class="logo" src="imgs/logo_af.png">
-    <div class="text">
+                    <div class="title">
+                        <span class="position">{{ position.title }}</span>
+                        @ {{ job.company }}
 
-        <div class="jheader">
-            <div class="years">2010-2016</div>    
-            <div class="place">Valladolid, Spain</div>    
-        </div>
+                        <div class="tags">
+                            {% for tag in position.tags %}
+                                <div class="tag">{{ tag }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
 
-        <div class="title">
-            <span class="position">Software developer</span>
-            @ Alcañiz Fresno's
+                    <div class="content">
+                        {{ position.description }}
+                    </div>
 
-            <div class="tags">
-                <div class="tag">part-time</div>
+                {% endfor %}
+
             </div>
+
         </div>
-
-        <div class="content">
-
-            <p>
-                Editorial and printing company.
-
-                I have worked developing software
-                to automatize the creation of digital documents
-                (epub, pdf, html, xml) using Adobe Indesign Extented Script
-                (Javascript).
-            </p>
-        </div>
-    
-
     </div>
-</div>
 
-
-
+{% endfor %}

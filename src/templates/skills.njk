@@ -6,26 +6,18 @@
 
     <div class="tags">
 
-        <div class="tag">PHP</div>
-        <div class="tag">Laravel</div>
+        {% for tag in skills %}
+            
+            {% if tag|is_string %}
+                <div class="tag">{{ tag }}</div>
+            {% else %}
+                <div class="tag" title="{{ tag.title }}">
+                    {{ tag.text }}
+                </div>
+            {% endif %}
 
-        <div class="tag">Javascript</div>
-        <div class="tag">TypeScript</div>
-        <div class="tag">Node.js</div>
-        <div class="tag">Vue.js</div>
+        {% endfor %}
 
-        <div class="tag">PostgreSQL</div>
-
-        <div class="tag" title="Amazon Web Services">AWS</div>
-        <div class="tag">Docker</div>
-        <div class="tag">Git</div>
-
-        <div class="tag">Rest APIs</div>
-
-        <div class="tag">C/C++</div>
-
-        <div class="tag">Python</div>
-        <div class="tag">Pandas, NumPy</div>
 
     </div>
     

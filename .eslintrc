@@ -11,6 +11,5 @@
         "eslint-config-prettier"
     ],
     "rules": {
-        "@typescript-eslint/camelcase": ["warn"]
     }
 }
