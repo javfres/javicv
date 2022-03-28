@@ -118,11 +118,11 @@ const resume: ResumeT = {
             company: 'Biome Makers',
             start: 2016,
             place: 'Valladolid, Spain; SF, California',
-            logo: 'logo_bm.jpg',
+            logo: 'logo_bm2.jpg',
 
             description: html`
                 <p>
-                    Biome Makers is a biotech company
+                    Biome Makers is a biotech startup company
                     that uses DNA sequencing to analyze
                     the microbiome in agricultural processes.
 
@@ -151,7 +151,7 @@ const resume: ResumeT = {
                             the client online portal,
                             our custom LIMS system,
                             the API Rest for laboratory licensing,
-                            and many third-party integrations (Stripe, HubSpot, NetSuite).
+                            and third-party integrations (Stripe, HubSpot, NetSuite).
             
                             Our core stack includes PHP Laravel, Vue.js,
                             and PostgreSQL, all running over AWS instances.
@@ -227,8 +227,12 @@ const resume: ResumeT = {
         'Subject': 'Resume',
         'Title': 'CV Javier Fresno',
         'Author': 'Javier Fresno',
-        'Keywords+': [ 'Software engineer', 'PhD Computer Science', 'Full stack' ],
-        'Creator': 'Javi Node.js+TSC+SASS+HTML',
+        'Keywords+': [
+            'Software engineer',
+            'PhD Computer Science',
+            'Full stack'
+        ],
+        'Creator': 'Javi Node.js+TS+SASS+HTML',
     },
 
 };
